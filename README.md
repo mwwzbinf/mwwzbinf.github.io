@@ -1,5 +1,6 @@
-# mwwzbinf.github.io
 
-[**≤‚ ‘≥Ã–Úœ¬‘ÿµÿ÷∑**](https://pan.baidu.com/s/1FP6wA8KOwCYJhKI1cc93xg?pwd=aabb)
+# MWWZTECH
+
+[Download](https://pan.baidu.com/s/1FP6wA8KOwCYJhKI1cc93xg?pwd=aabb)
 
 ![alt text](QQ_1752499747176.png)
