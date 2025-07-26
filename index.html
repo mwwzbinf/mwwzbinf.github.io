@@ -40,15 +40,15 @@
 			
         <section>
           <h2>我的文章</h2>
-          <ul class="post-list">
-            {% for post in site.posts %}
+          <ul>
+              {% for post in site.posts %}
               <li>
-                <span class="post-meta">{{ post.date | date: "%Y-%m-%d" }}</span>
-                <a class="post-link" href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
+                  <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+                  - {{ post.date | date: "%Y-%m-%d" }}
               </li>
-            {% endfor %}
+              {% endfor %}
           </ul>
-        </section>
+      </section>
     </main>
 
     <footer>
