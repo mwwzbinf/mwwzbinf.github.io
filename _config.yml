@@ -4,7 +4,9 @@ collections:
   posts:
     output: true
     permalink: /:year/:month/:day/:title.html
-    
+
+markdown: kramdown
+
 # Use the following plug-ins
 plugins:
   - jekyll-sitemap # Create a sitemap using the official Jekyll sitemap gem
