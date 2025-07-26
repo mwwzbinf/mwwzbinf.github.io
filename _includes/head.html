@@ -13,8 +13,33 @@
 window.MathJax = {
   startup: {
     ready: () => {
-      MathJax.startup.defaultReady();
-      // 加载完成后可以执行任何布局修复代码
+      if (document.readyState === 'complete') {
+        MathJax.startup.defaultReady();
+      } else {
+        window.addEventListener('load', () => MathJax.startup.defaultReady());
+      }
+    }
+  }
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+<script>
+window.MathJax = {
+  options: {
+    enableMenu: false,
+    renderActions: {
+      addMenu: [],
+      checkLoading: []
+    }
+  },
+  tex: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\\[','\\]']]
+  },
+  startup: {
+    typeset: false,
+    pageReady: () => {
+      setTimeout(() => MathJax.typesetPromise(), 500);
     }
   }
 };
