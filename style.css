@@ -20,3 +20,26 @@
         max-width: 100%;
     }
 }
+.site-header {
+    background: #f8f8f8;
+    padding: 15px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.header-nav {
+    display: flex;
+    justify-content: space-between; /* 左右分开 */
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.nav-left, .nav-right {
+    display: flex;
+    gap: 20px; /* 导航项间距 */
+}
+
+.nav-right {
+    margin-left: auto; /* 确保右侧对齐 */
+}
