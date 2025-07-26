@@ -1,42 +1,18 @@
-<!-- <!DOCTYPE html> -->
-<!-- <html> -->
-<!-- <head> -->
-    <!-- <meta charset="utf-8"> -->
-    <!-- <title>{{ page.title }}</title> -->
-    <!-- <link rel="stylesheet" href="/assets/css/style.css"> -->
-<!-- </head> -->
-<!-- <body> -->
-    <!-- <!-- 页眉 --> -->
-    <!-- {% include header.html %} -->
-
-    <!-- <!-- 内容区域（post.html 的内容会插入到这里） --> -->
-    <!-- {{ content }} -->
-
-    <!-- <!-- 页脚（可选） --> -->
-    <!-- <footer>...</footer> -->
-<!-- </body> -->
-<!-- </html> -->
-
-
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
+    <meta charset="utf-8">
     <title>{{ page.title }}</title>
     <link rel="stylesheet" href="/assets/css/style.css">
 </head>
 <body>
-  {% include header.html %}
-  
-  <!-- 添加这层包裹容器 -->
-  <main class="page-wrapper">
-    <div class="post-container">
-      <article class="post-content">
-        {{ content }}
-      </article>
-    </div>
-  </main>
-  
-  {% include footer.html %}
+    页眉
+    {% include header.html %}
+
+    内容区域（post.html 的内容会插入到这里）
+    {{ content }}
+
+    页脚（可选）
+    <footer>...</footer>
 </body>
 </html>
