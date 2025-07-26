@@ -52,6 +52,111 @@
             <a href="https://github.com/mwwzbinf">GitHub</a> |
             <a href="mailto:mwwz@qq.com">联系我</a>
         </p>
+
+        <!-- 微信公众号按钮 -->
+        <div class="footer-wechat">
+            <button onclick="showWechatQR()" class="wechat-btn">
+            <i class="icon-wechat">💬</i> 关注公众号
+            </button>
+        </div>
+
+        <!-- 弹窗模态框 -->
+        <div id="wechatModal" class="modal">
+            <div class="modal-content">
+            <span onclick="hideWechatQR()" class="close">&times;</span>
+            <h3>关注微信公众号</h3>
+            <img src="images/woa.jpg" alt="微信公众号二维码" style="width: 250px">
+            <p>打开微信扫一扫关注</p>
+            </div>
+        </div>
+
     </footer>
+
+    <style>
+        /* footer 基础样式 */
+        footer {
+          background: #333;
+          color: white;
+          padding: 30px 0;
+          text-align: center;
+          position: relative;
+        }
+      
+        /* 微信按钮样式 */
+        .wechat-btn {
+          padding: 8px 20px;
+          background: #07C160;
+          color: white;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+          font-size: 16px;
+          margin-top: 15px;
+          transition: all 0.3s;
+        }
+        .wechat-btn:hover {
+          background: #05a84e;
+          transform: translateY(-2px);
+        }
+      
+        /* 模态框样式（保持不变） */
+        .modal {
+          display: none;
+          position: fixed;
+          z-index: 1000;
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          background-color: rgba(0,0,0,0.7);
+        }
+        .modal-content {
+          background: white;
+          margin: 10% auto;
+          padding: 25px;
+          width: 300px;
+          text-align: center;
+          border-radius: 8px;
+          position: relative;
+          color: #333;
+        }
+        .close {
+          position: absolute;
+          right: 15px;
+          top: 5px;
+          font-size: 28px;
+          color: #aaa;
+          cursor: pointer;
+        }
+        .close:hover {
+          color: #333;
+        }
+      </style>
+      
+      <script>
+        // 显示/隐藏二维码弹窗
+        function showWechatQR() {
+          document.getElementById('wechatModal').style.display = 'block';
+          document.body.style.overflow = 'hidden'; // 禁止背景滚动
+        }
+        function hideWechatQR() {
+          document.getElementById('wechatModal').style.display = 'none';
+          document.body.style.overflow = 'auto'; // 恢复滚动
+        }
+      
+        // 点击模态框外部关闭
+        window.onclick = function(event) {
+          if (event.target == document.getElementById('wechatModal')) {
+            hideWechatQR();
+          }
+        }
+      
+        // 按ESC键关闭
+        document.onkeydown = function(evt) {
+          if (evt.key === "Escape") hideWechatQR();
+        };
+      </script>
+
+
 </body>
 </html>
