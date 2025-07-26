@@ -2,6 +2,7 @@
 .post-content {
     max-width: 800px;   /* 限制最大宽度，避免过宽 */
     margin: 0 auto;     /* 水平居中 */
+	padding: 0 20px;
     text-align: center; /* 文本居中 */
 }
 
@@ -39,6 +40,7 @@
     }
 }
 
+/* 页眉样式 */
 .site-header {
     background: #f8f8f8;
     padding: 15px 0;
@@ -47,18 +49,14 @@
 
 .header-nav {
     display: flex;
-    justify-content: space-between; /* 左右分开 */
+    justify-content: space-between;
     align-items: center;
-    max-width: 1200px;
+    max-width: 800px;  /* 与文章容器相同 */
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 20px;    /* 与文章容器相同 */
 }
 
 .nav-left, .nav-right {
     display: flex;
-    gap: 20px; /* 导航项间距 */
-}
-
-.nav-right {
-    margin-left: auto; /* 确保右侧对齐 */
+    gap: 20px;
 }
