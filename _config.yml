@@ -1,5 +1,7 @@
-theme: minima # 官方默认主题
+# theme: minima # 官方默认主题
 # theme: jekyll-theme-hacker  # GitHub 官方提供的黑客风格主题
+
+remote_theme: pages-themes/merlot@v0.2.0
 
 collections:
   posts:
@@ -15,3 +17,4 @@ plugins:
   - jekyll-feed       # 生成 RSS 订阅
   - jekyll-seo-tag    # 增强 SEO
   - jekyll-sitemap    # 生成站点地图
+  - jekyll-remote-theme # add this line to the plugins list if you already have one
