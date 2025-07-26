@@ -1,7 +1,8 @@
 .post-container {
-    max-width: 800px;   // 控制文章内容宽度
-    margin: 0 auto;     // 水平居中
-    padding: 0 20px;    // 左右留白（移动端友好）
+    max-width: 800px;   /* 控制文章内容宽度 */
+    margin: 0 auto;     /* 水平居中 */
+    padding: 0 20px;    /* 左右留白（移动端友好）*/
+	text-align: center; /* 文本居中 */
 }
 
 @media (max-width: 600px) {
