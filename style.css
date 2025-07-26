@@ -1,0 +1,16 @@
+.post-container {
+    max-width: 800px;   // 控制文章内容宽度
+    margin: 0 auto;     // 水平居中
+    padding: 0 20px;    // 左右留白（移动端友好）
+}
+
+.post-content {
+    // 可选：调整标题、正文样式
+    h1 {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+    p {
+        line-height: 1.6;
+    }
+}
