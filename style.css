@@ -14,3 +14,9 @@
         line-height: 1.6;
     }
 }
+@media (max-width: 600px) {
+    .post-container {
+        padding: 0 10px;
+        max-width: 100%;
+    }
+}
