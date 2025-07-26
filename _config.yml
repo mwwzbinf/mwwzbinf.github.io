@@ -1,5 +1,5 @@
-# theme: minima # 官方默认主题
-theme: jekyll-theme-hacker  # GitHub 官方提供的黑客风格主题
+theme: minima # 官方默认主题
+# theme: jekyll-theme-hacker  # GitHub 官方提供的黑客风格主题
 
 collections:
   posts:
