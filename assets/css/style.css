@@ -1,54 +1,45 @@
-/* 新增：确保页面外层容器限制宽度 */
-.page-wrapper {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
 .post-container {
-  width: 100%;
-  max-width: 800px;   /* 控制文章内容宽度 */
-  margin: 0 auto;     /* 水平居中 */
-  padding: 0 20px;    /* 左右留白 */
-  box-sizing: border-box; /* 重要：包含padding在宽度内 */
+    max-width: 800px;   // 控制文章内容宽度
+    margin: 0 auto;     // 水平居中
+    padding: 0 20px;    // 左右留白（移动端友好）
 }
 
 .post-content {
-  width: 100%; /* 确保内容填满容器 */
-  
-  h1 {
-    text-align: center;
-    margin-bottom: 30px;
-  }
-  
-  p {
-    line-height: 1.6;
-    margin: 1em 0;
-  }
+    // 可选：调整标题、正文样式
+    h1 {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+    p {
+        line-height: 1.6;
+    }
 }
-
-/* 移动端适配 */
 @media (max-width: 600px) {
-  .post-container {
-    padding: 0 15px;
-  }
+    .post-container {
+        padding: 0 10px;
+        max-width: 100%;
+    }
+}
+.site-header {
+    background: #f8f8f8;
+    padding: 15px 0;
+    border-bottom: 1px solid #eee;
 }
 
-/* 页眉样式保持原有 */
-.site-header {
-  width: 100%;
-  background: #f8f8f8;
-  padding: 15px 0;
-  border-bottom: 1px solid #eee;
-  
-  .header-nav {
+.header-nav {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between; /* 左右分开 */
     align-items: center;
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
-    box-sizing: border-box;
-  }
+}
+
+.nav-left, .nav-right {
+    display: flex;
+    gap: 20px; /* 导航项间距 */
+}
+
+.nav-right {
+    margin-left: auto; /* 确保右侧对齐 */
 }
