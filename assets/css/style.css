@@ -5,18 +5,30 @@
     text-align: center; /* 文本居中 */
 }
 
-/* 确保代码块、图片等块级元素也居中 */
+/* 确保代码块、图片等块级元素居中 */
 .post-content pre,
-.post-content img {
-    max-width: min(100%, 800px); /* 不超过 800px，也不超过容器宽度 */
-    height: auto;
-    display: block;
-    margin: 0 auto;
-},
+.post-content img,
 .post-content table,
 .post-content blockquote {
-    margin: 0 auto;     /* 块级元素水平居中 */
-    text-align: left;   /* 代码块内部文本保持左对齐 */
+    max-width: 100%;    /* 防止元素超出容器 */
+    margin: 0 auto;     /* 水平居中 */
+}
+
+/* 特别针对图片的优化 */
+.post-content img {
+    height: auto;       /* 保持宽高比 */
+    display: block;     /* 避免行内元素间隙 */
+    border-radius: 4px; /* 可选：圆角效果 */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* 可选：轻微阴影 */
+}
+
+/* 代码块内部文本保持左对齐 */
+.post-content pre {
+    text-align: left;
+    overflow-x: auto;   /* 如果代码太长，允许横向滚动 */
+    padding: 12px;
+    background: #f5f5f5;
+    border-radius: 4px;
 }
 
 @media (max-width: 600px) {
