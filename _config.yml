@@ -1,14 +1,17 @@
-theme: minima
+# theme: minima # 官方默认主题
+theme: jekyll-theme-hacker  # GitHub 官方提供的黑客风格主题
 
 collections:
   posts:
     output: true
     permalink: /:year/:month/:day/:title.html
 
-markdown: kramdown
 
-# Use the following plug-ins
+# 构建配置
+markdown: kramdown
+highlighter: rouge
+permalink: /:year/:month/:day/:title/  # 文章永久链接格式
 plugins:
-  - jekyll-sitemap # Create a sitemap using the official Jekyll sitemap gem
-  - jekyll-feed # Create an Atom feed using the official Jekyll feed gem
-  - jekyll-paginate
+  - jekyll-feed       # 生成 RSS 订阅
+  - jekyll-seo-tag    # 增强 SEO
+  - jekyll-sitemap    # 生成站点地图
