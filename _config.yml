@@ -14,7 +14,9 @@ collections:
 # 构建配置
 markdown: kramdown
 kramdown:
-  math_engine: katex
+  # math_engine: katex
+  math_engine: mathjax  # 使用MathJax作为数学引擎
+  syntax_highlighter: rouge  # 代码高亮
   
 highlighter: rouge
 permalink: /:year/:month/:day/:title/  # 文章永久链接格式
