@@ -7,7 +7,12 @@
 
 /* 确保代码块、图片等块级元素也居中 */
 .post-content pre,
-.post-content img,
+.post-content img {
+    max-width: min(100%, 800px); /* 不超过 800px，也不超过容器宽度 */
+    height: auto;
+    display: block;
+    margin: 0 auto;
+},
 .post-content table,
 .post-content blockquote {
     margin: 0 auto;     /* 块级元素水平居中 */
