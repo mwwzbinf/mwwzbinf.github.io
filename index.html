@@ -47,55 +47,61 @@
 
       <section>
         <h2>我的文章</h2>
-        {% if site.posts.size > 0 %}
-                    <ul class="space-y-6">
-                        {% for post in site.posts %}
-                            <li class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-custom transform hover:-translate-y-1">
-                                <a href="{{ post.url | relative_url }}" class="block">
-                                    <h3 class="text-xl font-semibold text-gray-800 mb-2 hover:text-primary transition-custom">
-                                        {{ post.title }}
-                                    </h3>
-                                    
-                                    <div class="flex flex-wrap items-center text-gray-500 text-sm mb-3 gap-x-4">
-                                        <span class="flex items-center">
-                                            <i class="fa fa-calendar-o mr-2"></i>
-                                            {{ post.date | date: "%Y年%m月%d日" }}
-                                        </span>
-                                        
-                                        {% if post.categories.size > 0 %}
-                                            <span class="flex items-center">
-                                                <i class="fa fa-folder-o mr-2"></i>
-                                                {{ post.categories | join: ", " }}
-                                            </span>
-                                        {% endif %}
-                                        
-                                        {% if post.tags.size > 0 %}
-                                            <span class="flex items-center">
-                                                <i class="fa fa-tags mr-2"></i>
-                                                {{ post.tags | join: ", " }}
-                                            </span>
-                                        {% endif %}
-                                    </div>
-                                    
-                                    {% if post.excerpt %}
-                                        <p class="text-gray-600 mb-4">
-                                            {{ post.excerpt | strip_html | truncate: 150 }}
-                                        </p>
-                                    {% endif %}
-                                    
-                                    <span class="inline-block text-primary hover:text-blue-700 font-medium transition-custom">
-                                        阅读全文 <i class="fa fa-arrow-right ml-1"></i>
-                                    </span>
-                                </a>
-                            </li>
-                        {% endfor %}
-                    </ul>
-                {% else %}
-                    <div class="text-center py-10 bg-white rounded-lg shadow">
-                        <i class="fa fa-file-text-o text-4xl text-gray-300 mb-4"></i>
-                        <p class="text-gray-500">暂无文章发布，敬请期待！</p>
-                    </div>
-                {% endif %}
+        <ul id="postList" class="post-list"></ul>
+
+    <script>
+        // 获取文章列表并显示
+        async function fetchPostList() {
+            try {
+                // 获取 _posts 目录下的文件列表
+                const response = await fetch('_posts/');
+                if (!response.ok) {
+                    throw new Error('无法获取文章列表');
+                }
+                
+                const html = await response.text();
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(html, 'text/html');
+                
+                // 提取所有链接（假设都是Markdown文件）
+                const links = Array.from(doc.querySelectorAll('a'))
+                    .map(a => a.getAttribute('href'))
+                    .filter(href => href.endsWith('.md') || href.endsWith('.markdown'));
+                
+                // 按日期排序（假设文件名包含日期，如2023-01-01-title.md）
+                links.sort((a, b) => b.localeCompare(a));
+                
+                // 显示文章列表
+                const postList = document.getElementById('postList');
+                postList.innerHTML = '';
+                
+                links.forEach(link => {
+                    const fileName = link.split('/').pop();
+                    // 从文件名中提取日期和标题
+                    const match = fileName.match(/^(\d{4}-\d{2}-\d{2})-(.+)\.md$/i);
+                    const date = match ? match[1] : '无日期';
+                    const title = match ? match[2].replace(/-/g, ' ') : fileName;
+                    
+                    const listItem = document.createElement('li');
+                    listItem.className = 'post-item';
+                    listItem.innerHTML = `
+                        <h2 class="post-title">${title}</h2>
+                        <div class="post-date">${date}</div>
+                        <a href="_posts/${fileName}">阅读文章</a>
+                    `;
+                    postList.appendChild(listItem);
+                });
+                
+            } catch (error) {
+                console.error('获取文章列表失败:', error);
+                document.getElementById('postList').innerHTML = 
+                    `<li>无法加载文章列表: ${error.message}</li>`;
+            }
+        }
+        
+        // 页面加载时获取文章列表
+        window.addEventListener('DOMContentLoaded', fetchPostList);
+    </script>
       </section>
 
     </main>
