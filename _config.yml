@@ -1,1 +1,6 @@
 theme: jekyll-theme-minimal
+
+collections:
+  posts:
+    output: true
+    permalink: /:year/:month/:day/:title.html
