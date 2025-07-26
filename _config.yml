@@ -3,6 +3,8 @@ theme: minima # 官方默认主题
 
 # remote_theme: pages-themes/merlot@v0.2.0
 
+title: MWWZTECH
+
 collections:
   posts:
     output: true
