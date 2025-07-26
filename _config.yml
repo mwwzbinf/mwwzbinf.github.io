@@ -1,7 +1,7 @@
-# theme: minima # 官方默认主题
+theme: minima # 官方默认主题
 # theme: jekyll-theme-hacker  # GitHub 官方提供的黑客风格主题
 
-remote_theme: pages-themes/merlot@v0.2.0
+# remote_theme: pages-themes/merlot@v0.2.0
 
 collections:
   posts:
