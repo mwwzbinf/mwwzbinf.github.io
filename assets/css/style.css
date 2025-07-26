@@ -16,6 +16,7 @@
 
 /* 特别针对图片的优化 */
 .post-content img {
+	max-width: min(100%, 800px); /* 不超过 800px，也不超过容器宽度 */
     height: auto;       /* 保持宽高比 */
     display: block;     /* 避免行内元素间隙 */
     border-radius: 4px; /* 可选：圆角效果 */
