@@ -54,7 +54,11 @@
         async function fetchPostList() {
             try {
                 // 获取 _posts 目录下的文件列表
-                const response = await fetch('_posts/');
+                // 确保路径正确，添加baseURL处理
+                const baseURL = window.location.pathname.includes('index.html') ? '' : window.location.pathname;
+
+                const response = await fetch(`${baseURL}_posts/`);
+
                 if (!response.ok) {
                     throw new Error('无法获取文章列表');
                 }
