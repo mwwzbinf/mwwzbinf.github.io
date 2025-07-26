@@ -44,20 +44,58 @@
             <li><a href="/2025/07/26/对halcon形状匹配算法的一点分析.html">对halcon形状匹配算法的一点分析</a> - 简短描述</li>
           </ul>
       </section>
-      
+
       <section>
         <h2>我的文章</h2>
-        <ul>
-          {% for post in site.posts %}
-            <li>
-              <a href="{{ post.url }}">{{ post.title }}</a> - 
-              <span class="post-date">{{ post.date | date: "%Y-%m-%d" }}</span>
-              {% if post.excerpt %}
-                <p class="post-excerpt">{{ post.excerpt | strip_html | truncatewords: 20 }}</p>
-              {% endif %}
-            </li>
-          {% endfor %}
-        </ul>
+        {% if site.posts.size > 0 %}
+                    <ul class="space-y-6">
+                        {% for post in site.posts %}
+                            <li class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-custom transform hover:-translate-y-1">
+                                <a href="{{ post.url | relative_url }}" class="block">
+                                    <h3 class="text-xl font-semibold text-gray-800 mb-2 hover:text-primary transition-custom">
+                                        {{ post.title }}
+                                    </h3>
+                                    
+                                    <div class="flex flex-wrap items-center text-gray-500 text-sm mb-3 gap-x-4">
+                                        <span class="flex items-center">
+                                            <i class="fa fa-calendar-o mr-2"></i>
+                                            {{ post.date | date: "%Y年%m月%d日" }}
+                                        </span>
+                                        
+                                        {% if post.categories.size > 0 %}
+                                            <span class="flex items-center">
+                                                <i class="fa fa-folder-o mr-2"></i>
+                                                {{ post.categories | join: ", " }}
+                                            </span>
+                                        {% endif %}
+                                        
+                                        {% if post.tags.size > 0 %}
+                                            <span class="flex items-center">
+                                                <i class="fa fa-tags mr-2"></i>
+                                                {{ post.tags | join: ", " }}
+                                            </span>
+                                        {% endif %}
+                                    </div>
+                                    
+                                    {% if post.excerpt %}
+                                        <p class="text-gray-600 mb-4">
+                                            {{ post.excerpt | strip_html | truncate: 150 }}
+                                        </p>
+                                    {% endif %}
+                                    
+                                    <span class="inline-block text-primary hover:text-blue-700 font-medium transition-custom">
+                                        阅读全文 <i class="fa fa-arrow-right ml-1"></i>
+                                    </span>
+                                </a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <div class="text-center py-10 bg-white rounded-lg shadow">
+                        <i class="fa fa-file-text-o text-4xl text-gray-300 mb-4"></i>
+                        <p class="text-gray-500">暂无文章发布，敬请期待！</p>
+                    </div>
+                {% endif %}
       </section>
 
     </main>
