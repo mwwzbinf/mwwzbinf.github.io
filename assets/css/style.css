@@ -1,8 +1,17 @@
-.post-container {
-    max-width: 800px;   /* 控制文章内容宽度 */
+/* 文章内容容器 */
+.post-content {
+    max-width: 800px;   /* 限制最大宽度，避免过宽 */
     margin: 0 auto;     /* 水平居中 */
-    padding: 0 20px;    /* 左右留白（移动端友好）*/
-	text-align: center; /* 文本居中 */
+    text-align: center; /* 文本居中 */
+}
+
+/* 确保代码块、图片等块级元素也居中 */
+.post-content pre,
+.post-content img,
+.post-content table,
+.post-content blockquote {
+    margin: 0 auto;     /* 块级元素水平居中 */
+    text-align: left;   /* 代码块内部文本保持左对齐 */
 }
 
 @media (max-width: 600px) {
