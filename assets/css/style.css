@@ -68,3 +68,8 @@
         font-size: 1.5em; /* 根据父元素调整 */
     }
 }
+
+/* 强制所有标题左对齐 */
+h1, h2, h3, h4, h5, h6 {
+  text-align: left !important;
+}
