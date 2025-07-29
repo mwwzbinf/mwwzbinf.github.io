@@ -6,6 +6,12 @@
     text-align: center; /* 文本居中 */
 }
 
+/* 文章主标题保持居中 */
+.post-title, 
+.post-content h1 {
+  text-align: center;
+}
+
 /* 强制所有子标题左对齐 */
 .post-content h2,
 .post-content h3,
