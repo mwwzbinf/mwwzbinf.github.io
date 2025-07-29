@@ -6,6 +6,24 @@
     text-align: center; /* 文本居中 */
 }
 
+/* 无序列表左对齐 */
+.post-content ul {
+  text-align: left;
+  padding-left: 1em;  /* 保持适当的缩进 */
+  margin-left: 0;
+}
+
+/* 列表项内容左对齐 */
+.post-content li {
+  text-align: left;
+  margin-left: 0;
+}
+
+/* 针对以-开头的Markdown列表 */
+.post-content ul > li::before {
+  content: none;  /* 可选：移除默认的项目符号 */
+}
+
 /* 文章主标题保持居中 */
 .post-title, 
 .post-content h1 {
