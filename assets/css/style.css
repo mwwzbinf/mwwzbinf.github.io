@@ -6,6 +6,16 @@
     text-align: center; /* 文本居中 */
 }
 
+/* 强制所有子标题左对齐 */
+.post-content h2,
+.post-content h3,
+.post-content h4,
+.post-content h5,
+.post-content h6 {
+  text-align: left !important;
+  margin-left: 0 !important; /* 可选：移除默认缩进 */
+}
+
 /* 确保代码块、图片等块级元素居中 */
 .post-content pre,
 .post-content img,
@@ -67,9 +77,4 @@
     .nav-right a {
         font-size: 1.5em; /* 根据父元素调整 */
     }
-}
-
-/* 强制所有标题左对齐 */
-h1, h2, h3, h4, h5, h6 {
-  text-align: left !important;
 }
