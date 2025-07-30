@@ -109,6 +109,8 @@ layout: null
           <a href="javascript:void(0)" onclick="showWechatQR()" class="wechat-link">
               <i class="icon-wechat">📱</i> 微信公众号
           </a>
+		  <!-- 新增留言板链接 -->
+        <a href="#comments" onclick="scrollToComments()">💬 留言板</a>
       
           <!-- 二维码弹窗 -->
           <div id="wechatModal" class="wechat-modal">
@@ -119,8 +121,18 @@ layout: null
                   <p>打开微信扫一扫</p>
               </div>
           </div>
+		  <!-- 新增 utterances 评论容器 -->
+		<div id="comments" class="comments-section" style="margin-top: 50px; padding: 20px; background: #f9f9f9;">
+			<script src="https://utteranc.es/client.js"
+					repo="mwwzbinf/mwwzbinf.github.io"
+					issue-term="pathname"
+					theme="github-light"
+					crossorigin="anonymous"
+					async>
+			</script>
+		</div>
+	
       </p>
-
     </footer>
 
     <style>
@@ -199,12 +211,21 @@ layout: null
       });
   </script>
 
-<script src="https://utteranc.es/client.js"
-        repo="mwwzbinf/mwwzbinf.github.io"
-        issue-term="pathname"
-        theme="github-light"
-        crossorigin="anonymous"
-        async>
+<script>
+    // 跳转到留言板
+    function scrollToComments() {
+        const commentsSection = document.getElementById("comments");
+        commentsSection.scrollIntoView({ behavior: "smooth" });
+        return false; // 阻止默认锚点跳转
+    }
+
+    // 原有的微信二维码函数
+    function showWechatQR() {
+        document.getElementById("wechatModal").style.display = "block";
+    }
+    function hideWechatQR() {
+        document.getElementById("wechatModal").style.display = "none";
+    }
 </script>
 
 </body>
