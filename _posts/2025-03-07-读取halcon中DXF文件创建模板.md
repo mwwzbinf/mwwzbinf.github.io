@@ -11,7 +11,7 @@ author: mwwz
 
 在HDevelop的帮助窗口里，选择“算子”标签页，输入`dxf`，一共出现四个算子：
 
-![dxf相关算子](/images/dxf_0.png "dxf相关算子"){style="display:block; margin:auto"}
+![dxf相关算子](/images/dxf_0.png "dxf相关算子")
 
 - **read_contour_xld_dxf**：Read XLD contours from a DXF file.
 - **read_polygon_xld_dxf**：Read XLD polygons from a DXF file.
@@ -109,8 +109,8 @@ int main() {
 
 利用上述代码，分别读取由**write_contour_xld_dxf** 和**write_polygon_xld_dxf** 保存的DXF文件，输出结果如下：
 
-![dxf contour](/images/dxf_1.png "dxf contour"){ style="display:block; margin:auto"}
-![dxf polygon](/images/dxf_2.png "dxf polygon"){ style="display:block; margin:auto"}
+![dxf contour](/images/dxf_1.png "dxf contour")
+![dxf polygon](/images/dxf_2.png "dxf polygon")
 
 不难看出，**POLYLINE** 标示每一个XLD对象的开始，其后的**VERTEX** 即为XLD中的顶点，10，20，30分别对应**X，Y，Z** 坐标，1040对应**edge_direction** ，对于轮廓可以提取到`(X,Y,edge_direction)`，对于多边形可以提取到`(X,Y)`，基于这些信息，即可创建模板。
 
@@ -120,5 +120,5 @@ int main() {
 
 [测试软件下载地址](https://pan.baidu.com/s/1FP6wA8KOwCYJhKI1cc93xg?pwd=aabb)
 
-![dxf contour](/images/dxf_3.png "dxf contour"){ style="display:block; margin:auto"}
-![dxf polygon](/images/dxf_4.png "dxf polygon"){ style="display:block; margin:auto"}
+![dxf contour](/images/dxf_3.png "dxf contour")
+![dxf polygon](/images/dxf_4.png "dxf polygon")
