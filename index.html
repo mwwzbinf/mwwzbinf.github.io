@@ -108,7 +108,7 @@ layout: null
           <a href="mailto:mwwz@qq.com">联系我</a> |
           <a href="javascript:void(0)" onclick="showWechatQR()" class="wechat-link">
               <i class="icon-wechat">📱</i> 微信公众号
-          </a>
+          </a> |
 		  <!-- 新增留言板链接 -->
         <a href="#comments" onclick="scrollToComments()">💬 留言板</a>
       
@@ -190,6 +190,13 @@ layout: null
   </style>
   
   <script>
+	  // 跳转到留言板
+		function scrollToComments() {
+			const commentsSection = document.getElementById("comments");
+			commentsSection.scrollIntoView({ behavior: "smooth" });
+			return false; // 阻止默认锚点跳转
+		}
+	
       // 保持原有的JavaScript代码
       function showWechatQR() {
           document.getElementById('wechatModal').style.display = 'flex';
@@ -211,22 +218,6 @@ layout: null
       });
   </script>
 
-<script>
-    // 跳转到留言板
-    function scrollToComments() {
-        const commentsSection = document.getElementById("comments");
-        commentsSection.scrollIntoView({ behavior: "smooth" });
-        return false; // 阻止默认锚点跳转
-    }
-
-    // 原有的微信二维码函数
-    function showWechatQR() {
-        document.getElementById("wechatModal").style.display = "block";
-    }
-    function hideWechatQR() {
-        document.getElementById("wechatModal").style.display = "none";
-    }
-</script>
 
 </body>
 </html>
