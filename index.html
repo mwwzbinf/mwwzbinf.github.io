@@ -57,7 +57,8 @@ layout: null
               <!-- </li> -->
             <!-- {% endfor %} -->	
           <!-- </ul> -->
-		  <ul id="post-list">
+		  
+		  <ul>
 		  {% for post in site.posts limit: 2 %}
 			<li>
 			  <a href="{{ post.url }}">{{ post.title }}</a>
@@ -66,31 +67,11 @@ layout: null
 		  {% endfor %}
 		  
 		  {% if site.posts.size > 2 %}
-			<li class="hidden-posts">
-			  {% for post in site.posts offset: 2 %}
-				<li>
-				  <a href="{{ post.url }}">{{ post.title }}</a>
-				  <span>{{ post.date | date: "%Y-%m-%d" }}</span>
-				</li>
-			  {% endfor %}
-			</li>
 			<li>
-			  <a href="#" onclick="showAllPosts(); return false;">查看所有文章</a>
+			  <a href="/all-posts.html">查看所有文章</a>
 			</li>
 		  {% endif %}
 		</ul>
-		<script>
-		function showAllPosts() {
-		  document.getElementById('post-list').querySelector('.hidden-posts').style.display = 'block';
-		  event.target.style.display = 'none';
-		}
-		</script>
-
-		<style>
-		.hidden-posts {
-		  display: none;
-		}
-		</style>
 		
         </section>
     </main>
