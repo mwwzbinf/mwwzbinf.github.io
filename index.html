@@ -67,7 +67,7 @@ layout: null
 			  <!-- 折叠剩余文章（如果有） -->
 			  {% if site.posts.size > 2 %}
 				<li class="collapsed">
-				  <a href="#" onclick="toggleCollapse(this)">查看更多 <span class="caret">▼</span></a>
+				  <a href="#" onclick="toggleAllPosts(this); return false;">查看全部 <span class="caret">▼</span></a>
 				  <ul class="collapsed-posts" style="display: none;">
 					{% for post in site.posts offset: 2 %}
 					  <li>
@@ -181,6 +181,19 @@ layout: null
       });
   </script>
 
+<!-- JavaScript 实现展开/收起功能 -->
+<script>
+  function toggleAllPosts(button) {
+	const collapsedList = button.nextElementSibling;
+	if (collapsedList.style.display === "none") {
+	  collapsedList.style.display = "block";
+	  button.innerHTML = "收起 <span class='caret'>▲</span>";
+	} else {
+	  collapsedList.style.display = "none";
+	  button.innerHTML = "查看全部 <span class='caret'>▼</span>";
+	}
+  }
+</script>
 
 </body>
 </html>
