@@ -189,13 +189,15 @@ layout: null
       }
   </style>
   
+  <div id="comments" style="display: none;"></div>
   <script>
-	  // 跳转到留言板
-		function scrollToComments() {
-			const commentsSection = document.getElementById("comments");
-			commentsSection.scrollIntoView({ behavior: "smooth" });
-			return false; // 阻止默认锚点跳转
-		}
+	  
+    function scrollToComments() {
+        const commentsSection = document.getElementById("comments");
+        commentsSection.style.display = "block";
+        commentsSection.scrollIntoView({ behavior: "smooth" });
+        return false;
+    }
 	
       // 保持原有的JavaScript代码
       function showWechatQR() {
