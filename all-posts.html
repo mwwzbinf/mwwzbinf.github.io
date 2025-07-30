@@ -1,14 +1,53 @@
 ---
-layout: post  # 使用你的主题布局
+layout: post
 title: 所有文章
-permalink: /all-posts.html  # 强制指定访问路径（关键）
+permalink: /all-posts.html
 ---
-<!-- 页面内容 -->
-<ul>
-  {% for post in site.posts %}
-    <li>
-      <a href="{{ post.url }}">{{ post.title }}</a>
-      <span>{{ post.date | date: "%Y-%m-%d" }}</span>
-    </li>
-  {% endfor %}
-</ul>
+
+<style>
+/* 仅作用于当前页面的字体样式 */
+/* 方法1：通过页面独有的容器类名限制样式范围 */
+.all-posts-container {
+  font-size: 18px; /* 基础字体大小 */
+  line-height: 1.8;
+}
+
+/* 标题字体 */
+.all-posts-container h1 {
+  font-size: 32px;
+  margin: 20px 0 30px;
+}
+
+/* 文章列表项字体 */
+.all-posts-container .post-item {
+  font-size: 20px;
+  margin: 15px 0;
+}
+
+/* 日期字体 */
+.all-posts-container .post-date {
+  font-size: 16px;
+  color: #666;
+  margin-left: 15px;
+}
+
+/* 方法2（备选）：如果页面有唯一body类名，可直接使用
+body.page-all-posts {
+  font-size: 18px;
+}
+*/
+</style>
+
+<!-- 用独有的容器包裹整个页面内容，确保样式仅作用于此页面 -->
+<div class="all-posts-container">
+  <h1>所有文章</h1>
+  
+  <ul>
+    {% for post in site.posts %}
+      <li class="post-item">
+        <a href="{{ post.url }}">{{ post.title }}</a>
+        <span class="post-date">{{ post.date | date: "%Y-%m-%d" }}</span>
+      </li>
+    {% endfor %}
+  </ul>
+</div>
