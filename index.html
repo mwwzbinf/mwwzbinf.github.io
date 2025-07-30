@@ -72,7 +72,29 @@ layout: null
 			</div>
 		  {% endif %}
 		</ul>
-		
+		<style>
+		.view-all-link {
+		  /* 右对齐容器 */
+		  text-align: right;
+		  /* 可选：添加一些间距 */
+		  margin-top: 1rem;
+		}
+
+		.view-all-link a {
+		  /* 添加下划线 */
+		  text-decoration: underline;
+		  /* 改变链接颜色 */
+		  color: #2c3e50; /* 深灰色，可替换为其他颜色 */
+		  /* 可选：添加悬停效果 */
+		  transition: color 0.3s ease;
+		}
+
+		/* 悬停时的颜色变化（可选） */
+		.view-all-link a:hover {
+		  color: #3498db; /* 蓝色，可替换为其他颜色 */
+		}
+		</style>
+
         </section>
     </main>
 
