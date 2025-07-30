@@ -192,11 +192,23 @@ layout: null
   <script>
 	  
     function scrollToComments() {
-        const commentsSection = document.getElementById("comments");
-        commentsSection.style.display = "block";
-        commentsSection.scrollIntoView({ behavior: "smooth" });
-        return false;
-    }
+		const commentsSection = document.getElementById("comments");
+		
+		// 判断当前状态并切换
+		if (commentsSection.style.display === "block" || 
+			(commentsSection.style.display === "" && window.getComputedStyle(commentsSection).display !== "none")) {
+			// 如果当前是显示状态 -> 隐藏
+			commentsSection.style.display = "none";
+		} else {
+			// 如果当前是隐藏状态 -> 显示并滚动
+			commentsSection.style.display = "block";
+			setTimeout(() => {
+				commentsSection.scrollIntoView({ behavior: "smooth" });
+			}, 10); // 小延迟确保display生效
+		}
+		
+		return false; // 阻止默认行为
+	}
 	
       // 保持原有的JavaScript代码
       function showWechatQR() {
