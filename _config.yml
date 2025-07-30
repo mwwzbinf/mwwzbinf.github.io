@@ -8,7 +8,7 @@ title: MWWZTECH
 collections:
   posts:
     output: true
-    # permalink: /:year/:month/:day/:title.html
+    permalink: /:year/:month/:day/:title.html
 
 
 # 构建配置
