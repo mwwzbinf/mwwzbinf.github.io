@@ -49,12 +49,35 @@ layout: null
         <section>
           <h2>我的文章</h2>
           <ul>
-            {% for post in site.posts %}
-              <li>
-                <a href="{{ post.url }}">{{ post.title }}</a>
-                <span>{{ post.date | date: "%Y-%m-%d" }}</span>
-              </li>
-            {% endfor %}
+		  <!-- 显示所有文章 -->
+            <!-- {% for post in site.posts %} -->
+              <!-- <li> -->
+                <!-- <a href="{{ post.url }}">{{ post.title }}</a> -->
+                <!-- <span>{{ post.date | date: "%Y-%m-%d" }}</span> -->
+              <!-- </li> -->
+            <!-- {% endfor %} -->
+			<!-- 显示前2篇文章 -->
+			  {% for post in site.posts limit: 2 %}
+				<li>
+				  <a href="{{ post.url }}">{{ post.title }}</a>
+				  <span>{{ post.date | date: "%Y-%m-%d" }}</span>
+				</li>
+			  {% endfor %}
+
+			  <!-- 折叠剩余文章（如果有） -->
+			  {% if site.posts.size > 2 %}
+				<li class="collapsed">
+				  <a href="#" onclick="toggleCollapse(this)">查看更多 <span class="caret">▼</span></a>
+				  <ul class="collapsed-posts" style="display: none;">
+					{% for post in site.posts offset: 2 %}
+					  <li>
+						<a href="{{ post.url }}">{{ post.title }}</a>
+						<span>{{ post.date | date: "%Y-%m-%d" }}</span>
+					  </li>
+					{% endfor %}
+				  </ul>
+				</li>
+			  {% endif %}
           </ul>
         </section>
 
