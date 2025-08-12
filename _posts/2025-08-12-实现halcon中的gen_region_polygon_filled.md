@@ -38,10 +38,14 @@ author: mwwz
 
 ## openCV实现
 
-openCV中的fillPoly实现了上述的扫描线填充算法，主要用到的函数有两个：CollectPolyEdges和FillEdgeCollection，第一个函数是收集多边形边缘，第二个函数是填充多边形，大概过程就是将与扫描线相交的边表
+openCV中的fillPoly实现了扫描线填充算法，基本思想是：用一条水平的扫描线从多边形的底部移动到顶部（或反之），在每一行，计算出扫描线与多边形所有边的交点。然后将这些交点按 x 坐标排序，将成对的交点之间的像素区间进行填充。主要用到两个函数：CollectPolyEdges和FillEdgeCollection，第一个是收集多边形边缘，第二个是填充多边形。值得注意的是fillPoly内部使用专门的整数算法(类似于Bresenham直线算法)来计算边与扫描线的交点，以及在扫描线递增时更新交点x坐标，这比直接使用x=x+dx/dy的浮点运算快得多。
 
 ## halcon实现
 
-opencv里的椭圆拟合函数并不是很好使，参照文献[Numerically Stable Direct Least Squares Fitting of Ellipses](https://www.semanticscholar.org/paper/Numerically-Stable-Direct-Least-Squares-Fitting-of-oy-Flusser/9a8607575ba9c6016e9f3db5e52f5ed4d14d5dfd)实现会好很多，该方法是数值稳定的，对于只占椭圆很小一段比例的圆弧效果很好。
+gen_region_polygon_filled 是 HALCON 中一个基础但非常重要的区域生成算子。它的核心功能是根据一组给定的顶点坐标，创建一个被完全填充的多边形区域（Region）。算子会自动将最后一个顶点与第一个顶点相连，形成一个闭合的多边形，顶点坐标值可以是整数（integer）也可以是浮点数（float）。如果你提供的顶点顺序导致多边形的边相互交叉（即“自相交”），算子依然能够正确处理。它会使用一种称为“奇偶规则”的算法来确定哪些部分属于多边形内部。基于网上的信息，该算子也是基于扫描线填充算法实现。
 
-![示例图片](/images/ellipse_dist_4.png)
+## 关于多边形边缘点的确定
+
+不难看出扫描线与边的交点通常为浮点坐标，而区域是基于行程编码(整数坐标)表示的，这就涉及一个问题，如何确定多边形的边缘点坐标？也就是一个行程(1 个Run)的起点和终点该如何确定？向上取整、向下取整、四舍五入还是其它？对此，我将opencv的填充结果与halcon进行对比，图示如下：
+
+![示例图片](/images/polygon_fill_2.png)
