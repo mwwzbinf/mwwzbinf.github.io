@@ -29,3 +29,5 @@ author: mwwz
 ![示例图片](/images/mask_0.png "create_mask")
 ![示例图片](/images/mask_1.png "save_mask")
 ![示例图片](/images/mask_2.png "create_model_with_mask")
+
+[**下载地址**](https://pan.baidu.com/s/1FP6wA8KOwCYJhKI1cc93xg?pwd=aabb)
