@@ -39,9 +39,9 @@ author: mwwz
 - **在橡皮擦模式下单击右键**：返回之前使用的模式
 
 ## 📸 功能预览
-![涂鸦模式示例](/images/mask_3.png "涂鸦模式 - 实时显示画笔大小")
-![橡皮擦模式示例](/images/mask_4.png "橡皮擦模式 - 实时显示擦除范围")  
-![变形匹配示例](/images/mask_5.png "智能变形匹配功能")
+![涂鸦模式示例](/images/mask_3.png "涂鸦模式")
+![橡皮擦模式示例](/images/mask_4.png "橡皮擦模式")  
+![变形匹配示例](/images/mask_5.png "变形匹配")
 
 ## 🚀 立即下载
 **[点击下载 MaskEditor v2.0](https://www.mwwztech.xyz/download/MaskEditor2.0.rar)**
