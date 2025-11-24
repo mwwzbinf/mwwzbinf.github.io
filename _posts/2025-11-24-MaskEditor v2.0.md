@@ -7,8 +7,6 @@ comments: true
 author: mwwz
 ---
 
-# MaskEditor 功能更新
-
 本次更新新增了橡皮擦模式，并优化了画笔大小的实时显示功能。
 
 ## 🎯 核心功能模式
