@@ -32,3 +32,5 @@ author: mwwz
 ![示例图片](/images/mask_3.png "涂鸦模式")
 ![示例图片](/images/mask_4.png "橡皮擦模式")
 ![示例图片](/images/mask_5.png "变形匹配")
+
+[**下载地址**](https://www.mwwztech.xyz/download/MaskEditor2.0.rar)
