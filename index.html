@@ -54,6 +54,31 @@ layout: null
 			</div>
 		</section>
 
+		<script>
+			let currentIndex = 0;
+			const slides = document.querySelectorAll('.carousel-slide img');
+
+			function showSlide(index) {
+				// 隐藏所有图片
+				slides.forEach(img => img.style.display = 'none');
+				
+				// 计算索引（处理越界）
+				currentIndex = (index + slides.length) % slides.length;
+				
+				// 显示当前图片
+				slides[currentIndex].style.display = 'block';
+			}
+
+			function changeSlide(n) {
+				showSlide(currentIndex + n);
+			}
+
+			// 自动轮播：每 3 秒切换一次
+			setInterval(() => {
+				changeSlide(1);
+			}, 3000);
+		</script>
+
         <section>
           <h2>笔耕不辍</h2>
           <!-- <ul> -->
