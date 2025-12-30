@@ -41,42 +41,56 @@ layout: null
 					<a href="https://pan.baidu.com/s/1FP6wA8KOwCYJhKI1cc93xg?pwd=aabb" target="_blank" class="baidu-link">[百度网盘]</a>
 					<!-- <a href="https://github.com/mwwzbinf/mwwz-shape-match/releases" target="_blank" class="github-link">[GitHub Release]</a> -->
 				</span>
-			</p>			
-			<div class="carousel-container" style="position: relative; overflow: hidden; max-width: 100%;">
+			</p>
+			
+			<div class="carousel-container" style="position: relative; max-width: 100%; text-align: center;">
 				<div class="carousel-slide">
-					<img src="images/e.png" alt="图1" style="width: 100%; display: block;">
-					<img src="images/f.png" alt="图2" style="width: 100%; display: none;">
-					<img src="images/g.png" alt="图3" style="width: 100%; display: none;">
+					<img class="slide" src="images/e.png" style="width: 100%; display: block;">
+					<img class="slide" src="images/f.png" style="width: 100%; display: none;">
+					<img class="slide" src="images/g.png" style="width: 100%; display: none;">
 				</div>
 				
-				<button onclick="changeSlide(-1)" style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); opacity: 0.5;">❮</button>
-				<button onclick="changeSlide(1)" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); opacity: 0.5;">❯</button>
+				<div class="dots-container" style="position: absolute; bottom: 15px; width: 100%; text-align: center;">
+					<span class="dot" onclick="currentSlide(0)" style="height: 12px; width: 12px; margin: 0 5px; background-color: #bbb; border-radius: 50%; display: inline-block; cursor: pointer;"></span>
+					<span class="dot" onclick="currentSlide(1)" style="height: 12px; width: 12px; margin: 0 5px; background-color: #bbb; border-radius: 50%; display: inline-block; cursor: pointer;"></span>
+					<span class="dot" onclick="currentSlide(2)" style="height: 12px; width: 12px; margin: 0 5px; background-color: #bbb; border-radius: 50%; display: inline-block; cursor: pointer;"></span>
+				</div>
 			</div>
 		</section>
 
 		<script>
-			let currentIndex = 0;
-			const slides = document.querySelectorAll('.carousel-slide img');
+			let slideIndex = 0;
+			const slides = document.querySelectorAll('.slide');
+			const dots = document.querySelectorAll('.dot');
 
-			function showSlide(index) {
-				// 隐藏所有图片
-				slides.forEach(img => img.style.display = 'none');
-				
-				// 计算索引（处理越界）
-				currentIndex = (index + slides.length) % slides.length;
-				
-				// 显示当前图片
-				slides[currentIndex].style.display = 'block';
+			function showSlides(n) {
+				// 处理索引越界
+				if (n >= slides.length) slideIndex = 0;
+				if (n < 0) slideIndex = slides.length - 1;
+
+				// 隐藏所有图片，重置所有圆点颜色
+				slides.forEach(img => img.style.display = "none");
+				dots.forEach(dot => dot.style.backgroundColor = "#bbb");
+
+				// 显示当前图片，高亮当前圆点
+				slides[slideIndex].style.display = "block";
+				dots[slideIndex].style.backgroundColor = "#717171"; // 激活状态颜色
 			}
 
-			function changeSlide(n) {
-				showSlide(currentIndex + n);
+			// 点击圆点跳转
+			function currentSlide(n) {
+				slideIndex = n;
+				showSlides(slideIndex);
 			}
 
-			// 自动轮播：每 3 秒切换一次
+			// 自动轮播
 			setInterval(() => {
-				changeSlide(1);
+				slideIndex++;
+				showSlides(slideIndex);
 			}, 3000);
+
+			// 初始化显示第一张
+			showSlides(slideIndex);
 		</script>
 
         <section>
