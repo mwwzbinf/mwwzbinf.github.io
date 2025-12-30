@@ -39,24 +39,42 @@ layout: null
 				<span class="download-links">
 					<a href="/download/shape_based_matching_demo.rar" target="_blank" class="direct-link">[直接下载]</a>
 					<a href="https://pan.baidu.com/s/1FP6wA8KOwCYJhKI1cc93xg?pwd=aabb" target="_blank" class="baidu-link">[百度网盘]</a>
-					<!-- <a href="https://github.com/mwwzbinf/mwwz-shape-match/releases" target="_blank" class="github-link">[GitHub Release]</a> -->
 				</span>
 			</p>
 			
-			<div class="carousel-container" style="position: relative; max-width: 100%; text-align: center;">
+			<div class="carousel-container" style="max-width: 100%;">
 				<div class="carousel-slide">
-					<img class="slide" src="images/e.png" style="width: 100%; display: block;">
-					<img class="slide" src="images/f.png" style="width: 100%; display: none;">
-					<img class="slide" src="images/g.png" style="width: 100%; display: none;">
+					<img class="slide" src="images/e.png" style="width: 100%; display: block; border-radius: 4px;">
+					<img class="slide" src="images/f.png" style="width: 100%; display: none; border-radius: 4px;">
+					<img class="slide" src="images/g.png" style="width: 100%; display: none; border-radius: 4px;">
 				</div>
 				
-				<div class="dots-container" style="position: absolute; bottom: 15px; width: 100%; text-align: center;">
-					<span class="dot" onclick="currentSlide(0)" style="height: 12px; width: 12px; margin: 0 5px; background-color: #bbb; border-radius: 50%; display: inline-block; cursor: pointer;"></span>
-					<span class="dot" onclick="currentSlide(1)" style="height: 12px; width: 12px; margin: 0 5px; background-color: #bbb; border-radius: 50%; display: inline-block; cursor: pointer;"></span>
-					<span class="dot" onclick="currentSlide(2)" style="height: 12px; width: 12px; margin: 0 5px; background-color: #bbb; border-radius: 50%; display: inline-block; cursor: pointer;"></span>
+				<div class="dots-container" style="text-align: center; padding: 15px 0;">
+					<span class="dot" onclick="currentSlide(0)"></span>
+					<span class="dot" onclick="currentSlide(1)"></span>
+					<span class="dot" onclick="currentSlide(2)"></span>
 				</div>
 			</div>
 		</section>
+
+		<style>
+			.dot {
+				height: 10px;
+				width: 10px;
+				margin: 0 5px;
+				background-color: #ddd; /* 默认浅灰色 */
+				border-radius: 50%;
+				display: inline-block;
+				cursor: pointer;
+				transition: background-color 0.3s ease;
+			}
+			.dot:hover {
+				background-color: #999; /* 悬停颜色 */
+			}
+			.dot.active {
+				background-color: #333; /* 激活颜色 */
+			}
+		</style>
 
 		<script>
 			let slideIndex = 0;
@@ -64,32 +82,39 @@ layout: null
 			const dots = document.querySelectorAll('.dot');
 
 			function showSlides(n) {
-				// 处理索引越界
 				if (n >= slides.length) slideIndex = 0;
 				if (n < 0) slideIndex = slides.length - 1;
 
-				// 隐藏所有图片，重置所有圆点颜色
+				// 隐藏所有图片，移除所有圆点的 active 类
 				slides.forEach(img => img.style.display = "none");
-				dots.forEach(dot => dot.style.backgroundColor = "#bbb");
+				dots.forEach(dot => dot.classList.remove("active"));
 
-				// 显示当前图片，高亮当前圆点
+				// 显示当前图，激活对应圆点
 				slides[slideIndex].style.display = "block";
-				dots[slideIndex].style.backgroundColor = "#717171"; // 激活状态颜色
+				dots[slideIndex].classList.add("active");
 			}
 
-			// 点击圆点跳转
 			function currentSlide(n) {
 				slideIndex = n;
 				showSlides(slideIndex);
 			}
 
 			// 自动轮播
-			setInterval(() => {
+			let autoTimer = setInterval(() => {
 				slideIndex++;
 				showSlides(slideIndex);
 			}, 3000);
 
-			// 初始化显示第一张
+			// 鼠标点击圆点后重新计时（可选，增强体验）
+			function resetTimer() {
+				clearInterval(autoTimer);
+				autoTimer = setInterval(() => {
+					slideIndex++;
+					showSlides(slideIndex);
+				}, 3000);
+			}
+
+			// 初始化
 			showSlides(slideIndex);
 		</script>
 
