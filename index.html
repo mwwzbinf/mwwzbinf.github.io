@@ -58,21 +58,32 @@ layout: null
 		</section>
 
 		<style>
+			/* 轮播图容器，确保没有多余的下边距 */
+			.carousel-container {
+				max-width: 100%;
+				margin-bottom: 0; 
+			}
+
+			.dots-container {
+				text-align: center;
+				padding: 5px 0;    /* 缩小圆点与图片之间的上下内边距 (原为15px) */
+				margin-top: -5px;  /* 如果还觉得远，可以用负边距微调 */
+				line-height: 1;    /* 消除行高带来的额外间距 */
+			}
+
 			.dot {
-				height: 10px;
-				width: 10px;
-				margin: 0 5px;
-				background-color: #ddd; /* 默认浅灰色 */
+				height: 6px;       /* 缩小圆点高度 (原为10px) */
+				width: 6px;        /* 缩小圆点宽度 (原为10px) */
+				margin: 0 3px;     /* 缩小圆点之间的左右间距 (原为5px) */
+				background-color: #ddd;
 				border-radius: 50%;
 				display: inline-block;
 				cursor: pointer;
 				transition: background-color 0.3s ease;
 			}
-			.dot:hover {
-				background-color: #999; /* 悬停颜色 */
-			}
+
 			.dot.active {
-				background-color: #333; /* 激活颜色 */
+				background-color: #717171;
 			}
 		</style>
 
