@@ -35,7 +35,7 @@ layout: null
     <main>
 		<section>
 			<h2>匠心之作</h2>
-			<p>基于形状的模板匹配
+			<p style="margin-bottom: 8px;">基于形状的模板匹配
 				<span class="download-links">
 					<a href="/download/shape_based_matching_demo.rar" target="_blank" class="direct-link">[直接下载]</a>
 					<a href="https://pan.baidu.com/s/1FP6wA8KOwCYJhKI1cc93xg?pwd=aabb" target="_blank" class="baidu-link">[百度网盘]</a>
@@ -58,23 +58,30 @@ layout: null
 		</section>
 
 		<style>
-			/* 轮播图容器，确保没有多余的下边距 */
+			/* 1. 调整所有标题的默认间距，防止“笔耕不辍”离上方太远 */
+			section h2 {
+				margin-top: 15px;    /* 缩小标题上方的距离 */
+				margin-bottom: 10px;  /* 缩小标题与其下方内容的距离 */
+			}
+
+			/* 2. 轮播图外层容器 */
 			.carousel-container {
 				max-width: 100%;
-				margin-bottom: 0; 
+				margin-bottom: 0px;   /* 容器底部的外边距 */
 			}
 
+			/* 3. 圆点容器：控制图片与圆点的距离 */
 			.dots-container {
 				text-align: center;
-				padding: 5px 0;    /* 缩小圆点与图片之间的上下内边距 (原为15px) */
-				margin-top: -5px;  /* 如果还觉得远，可以用负边距微调 */
-				line-height: 1;    /* 消除行高带来的额外间距 */
+				padding: 4px 0;       /* 核心：控制图片与圆点的上下间距 */
+				line-height: 1;       /* 消除默认行高 */
 			}
 
+			/* 4. 圆点本身的大小与间距 */
 			.dot {
-				height: 6px;       /* 缩小圆点高度 (原为10px) */
-				width: 6px;        /* 缩小圆点宽度 (原为10px) */
-				margin: 0 3px;     /* 缩小圆点之间的左右间距 (原为5px) */
+				height: 6px;          /* 圆点高度 */
+				width: 6px;           /* 圆点宽度 */
+				margin: 0 3px;        /* 圆点之间的左右间距 */
 				background-color: #ddd;
 				border-radius: 50%;
 				display: inline-block;
@@ -83,7 +90,11 @@ layout: null
 			}
 
 			.dot.active {
-				background-color: #717171;
+				background-color: #717171; /* 激活时的颜色 */
+			}
+
+			.dot:hover {
+				background-color: #bbb;    /* 鼠标悬停时的颜色 */
 			}
 		</style>
 
