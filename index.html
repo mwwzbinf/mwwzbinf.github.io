@@ -354,5 +354,105 @@ layout: null
   </script>
 
 
+
+<!-- 浮动视频窗口 -->
+<style>
+#floatingVideoContainer{
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    width: 500px;
+    background: #000;
+    border-radius: 12px;
+    overflow: hidden;
+    z-index: 9999;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.35);
+    transition: all 0.3s ease;
+}
+
+#floatingVideoContainer.maximized{
+    width: min(90vw, 1200px);
+    right: 5vw;
+    bottom: 5vh;
+}
+
+#floatingVideoHeader{
+    height: 40px;
+    background: rgba(20,20,20,0.95);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 12px;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+#floatingVideoControls button{
+    margin-left: 8px;
+    border: none;
+    background: #444;
+    color: white;
+    border-radius: 4px;
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+}
+
+#floatingVideoControls button:hover{
+    background: #666;
+}
+
+#floatingVideo{
+    width: 100%;
+    aspect-ratio: 1402 / 1000;
+    height: auto;
+    object-fit: contain;
+    display: block;
+    background: #000;
+}
+
+@media (max-width: 768px){
+    #floatingVideoContainer{
+        width: 72vw;
+        right: 4vw;
+        bottom: 10px;
+    }
+
+    #floatingVideoContainer.maximized{
+        width: 96vw;
+        right: 2vw;
+        bottom: 10px;
+    }
+}
+</style>
+
+<div id="floatingVideoContainer">
+    <div id="floatingVideoHeader">
+        <span>视频演示</span>
+        <div id="floatingVideoControls">
+            <button onclick="toggleFloatingVideo()">□</button>
+            <button onclick="closeFloatingVideo()">×</button>
+        </div>
+    </div>
+
+    <video id="floatingVideo" controls autoplay muted loop playsinline webkit-playsinline>
+        <source src="assets/shape_match2.mp4" type="video/mp4">
+        您的浏览器不支持视频播放
+    </video>
+</div>
+
+<script>
+function toggleFloatingVideo(){
+    document.getElementById('floatingVideoContainer')
+        .classList.toggle('maximized');
+}
+
+function closeFloatingVideo(){
+    document.getElementById('floatingVideoContainer').style.display='none';
+}
+</script>
+
+
 </body>
 </html>
