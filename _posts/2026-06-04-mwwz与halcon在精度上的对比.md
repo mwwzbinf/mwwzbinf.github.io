@@ -7,9 +7,7 @@ comments: true
 author: mwwz
 ---
 
-## mwwz与halcon在精度上的对比
-
-### 1. 准备工作
+## 1. 准备工作
 
 在 `HDevelop`中使用以下代码生成模板图像和待测试图像：
 
@@ -21,7 +19,7 @@ author: mwwz
 
 ![gen image](/images/gen_ls.png "gen image")
 
-### 2. 开始对比
+## 2. 开始对比
 
 - 起始角度设为`0°`，角度范围为`90°`。
 
