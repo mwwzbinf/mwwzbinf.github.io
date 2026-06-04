@@ -31,6 +31,8 @@ author: mwwz
 
 理论上，匹配结果应为`(320,240,θ)`。详细对比结果如下图所示，如有错误，欢迎指正。
 
+![result](/images/result_ls.png "result")
+
 ![halcon-0](/images/hls_0.png "halcon-0")
 
 ![mwwz-0](/images/mls_0.png "mwwz-0")
