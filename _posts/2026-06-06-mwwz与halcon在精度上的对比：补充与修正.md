@@ -15,9 +15,9 @@ author: mwwz
 
  使用`gen_rectangle2_contour_xld`算子验证对称性，如下图所示：
 
-![gen_rectangle2_contour_xld 30](/images/gen_rect2_xld_0.png "gen_rectangle2_contour_xld 30")
+![gen_rectangle2_contour_xld 22.5](/images/gen_rect2_xld_0.png "gen_rectangle2_contour_xld 22.5")
 
-![gen_rectangle2_contour_xld 60](/images/gen_rect2_xld_1.png "gen_rectangle2_contour_xld 60")
+![gen_rectangle2_contour_xld 75](/images/gen_rect2_xld_1.png "gen_rectangle2_contour_xld 75")
 
 ## 2. halcon中的两种坐标系
 
