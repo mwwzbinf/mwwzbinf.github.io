@@ -9,9 +9,9 @@ author: mwwz
 
 为了进一步评估`mwwz`与`halcon`的形状匹配精度，我使用`HDevelop`中的经典例程`first_example_shape_matching.hdev`进行测试，仅将参数`SubPixel`修改为`least_squares_very_high`。两者采用相同测试集，测试分为两组：第一组，`mwwz`在最小二乘拟合时使用部分边缘点；第二组，`mwwz`使用全部边缘点。测试结果如下：
 
-![result](/images/result_ls4.png "result")
+![result-partial](/images/result_ls4.png "result-partial")
 
-![result](/images/result_ls5.png "result")
+![result-all](/images/result_ls5.png "result=all")
 
 ![halcon-board-02](/images/hls_board_02.png "halcon-board-02")
 
