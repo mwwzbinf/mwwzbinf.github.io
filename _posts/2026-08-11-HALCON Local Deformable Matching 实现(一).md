@@ -35,10 +35,10 @@ author: mwwz
 <p align="center"><b>图1. 特征点提取结果</b></p>
 
 <div align="center">
-  <img src="/images/local_deform_1.png" width="45%" alt="邻域构建示意" style="display:inline-block; margin:0 5px;">
-  <img src="/images/local_deform_2.png" width="45%" alt="邻域构建细节" style="display:inline-block; margin:0 5px;">
+  <img src="/images/local_deform_1.png" width="45%" alt="邻域构建示例1" style="display:inline-block; margin:0 5px;">
+  <img src="/images/local_deform_2.png" width="45%" alt="邻域构建示例2" style="display:inline-block; margin:0 5px;">
 </div>
-<p align="center"><b>图2. 邻域构建结果</b>（左：局部点集分布，右：单个局部块结构）</p>
+<p align="center"><b>图2. 邻域构建结果</b>（不同特征点的局部点集示例）</p>
 
 ### 2. 局部块匹配与稀疏位移估计
 
