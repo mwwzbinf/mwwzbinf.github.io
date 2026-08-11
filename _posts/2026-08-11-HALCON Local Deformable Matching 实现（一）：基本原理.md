@@ -27,18 +27,18 @@ author: mwwz
 
 - **邻域构建：** 基于`KD-Tree` 对每个特征点搜索最近的 `k`个邻居点（实现上使用 OpenCV flann 或 nanoflann 库），从而将孤立点扩展为局部点集，为后续以“块”为单位的匹配做准备。
 
-![Feature Point Extraction](/images/local_deform_0.jpg "Feature Point Extraction")
-![Neighborhood Construction](/images/local_deform_1.jpg "Neighborhood Construction")
-![Neighborhood Construction](/images/local_deform_2.jpg "Neighborhood Construction")
+![Feature Point Extraction](/images/local_deform_0.png "Feature Point Extraction")
+![Neighborhood Construction](/images/local_deform_1.png "Neighborhood Construction")
+![Neighborhood Construction](/images/local_deform_2.png "Neighborhood Construction")
 
 ### 2. 局部块匹配与稀疏位移估计
 
 将每个局部点集作为独立块，与全局形状匹配类似进行独立匹配。对每个块的相似度响应图寻找峰值区域，提取亚像素位移(dx,dy)，汇总后得到稀疏形变场，为后续稠密插值提供约束。
 
-![Score map](/images/local_deform_3.jpg "Score map")
-![Score map](/images/local_deform_4.jpg "Score map")
-![Sparse field](/images/local_deform_5.jpg "Sparse field")
-![Zoom-in](/images/local_deform_6.jpg "Zoom-in")
+![Score map](/images/local_deform_3.png "Score map")
+![Score map](/images/local_deform_4.png "Score map")
+![Sparse field](/images/local_deform_5.png "Sparse field")
+![Zoom-in](/images/local_deform_6.png "Zoom-in")
 
 ### 3. 调和插值生成稠密形变场
 
@@ -76,8 +76,8 @@ $$
 
 **这就是代码中 用到的kernel ！**
 
-![Dense deformation field](/images/local_deform_7.jpg "Dense deformation field")
-![Close-up view](/images/local_deform_8.jpg "Close-up view")
+![Dense deformation field](/images/local_deform_7.png "Dense deformation field")
+![Close-up view](/images/local_deform_8.png "Close-up view")
 
 ### 4. 图像校正与模板扭曲
 
@@ -87,14 +87,14 @@ $$
 
 - **模板扭曲：** 若需将模板变换至目标图像空间，则根据模板各点位置查询对应的位移量，逐点施加偏移即可完成模板扭曲。
 
-![Corrected image](/images/local_deform_9.jpg "Corrected image")
-![Corrected template](/images/local_deform_10.jpg "Corrected template")
+![Corrected image](/images/local_deform_9.png "Corrected image")
+![Corrected template](/images/local_deform_10.png "Corrected template")
 
 ## 问题与后续探索
 
 ## 总结与展望
 
-![False and missing displacements](/images/local_deform_11.jpg "False and missing displacements")
+![False and missing displacements](/images/local_deform_11.png "False and missing displacements")
 
 目前，基于稠密形变场的图像校正与模板扭曲已基本实现对齐，但部分细节仍有待完善。理论上，只要位移估计足够精确，变换效果便不是瓶颈。
 
