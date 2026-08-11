@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "HALCON Local Deformable Matching 实现（一）：基本原理"
+title: "HALCON Local Deformable Matching 实现(一)
 date: 2026-08-11
 tags: [shape match]
 comments: true
