@@ -27,14 +27,13 @@ author: mwwz
 
 - **邻域构建：** 基于`KD-Tree` 对每个特征点搜索最近的 `k`个邻居点（实现上使用 OpenCV flann 或 nanoflann 库），从而将孤立点扩展为局部点集，为后续以“块”为单位的匹配做准备。
 
-<!-- ![Feature Point Extraction](/images/local_deform_0.png "Feature Point Extraction")
-![Neighborhood Construction](/images/local_deform_1.png "Neighborhood Construction")
+![Feature Point Extraction](/images/local_deform_0.png "Feature Point Extraction")
+<!-- ![Neighborhood Construction](/images/local_deform_1.png "Neighborhood Construction")
 ![Neighborhood Construction](/images/local_deform_2.png "Neighborhood Construction") -->
 
 <div align="center">
-  <img src="/images/local_deform_0.png" width="33%" alt="Feature Point Extraction" style="display:inline-block; margin:0 5px;">
-  <img src="/images/local_deform_0.png" width="33%" alt="Neighborhood Construction" style="display:inline-block; margin:0 5px;">
-  <img src="/images/local_deform_0.png" width="33%" alt="Neighborhood Construction" style="display:inline-block; margin:0 5px;">
+  <img src="/images/local_deform_1.png" width="50%" alt="Neighborhood Construction" style="display:inline-block; margin:0 5px;">
+  <img src="/images/local_deform_2.png" width="50%" alt="Neighborhood Construction" style="display:inline-block; margin:0 5px;">
 </div>
 
 ### 2. 局部块匹配与稀疏位移估计
