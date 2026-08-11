@@ -49,12 +49,12 @@ author: mwwz
 ![Sparse field](/images/local_deform_5.png "Sparse field")
 ![Zoom-in](/images/local_deform_6.png "Zoom-in") -->
 
-div align="center">
+<div align="center">
   <img src="/images/local_deform_3.png" width="45%" alt="Score map" style="display:inline-block; margin:0 5px;">
   <img src="/images/local_deform_4.png" width="45%" alt="Score map" style="display:inline-block; margin:0 5px;">
 </div>
 
-div align="center">
+<div align="center">
   <img src="/images/local_deform_5.png" width="45%" alt="Sparse field" style="display:inline-block; margin:0 5px;">
   <img src="/images/local_deform_6.png" width="45%" alt="Zoom-in" style="display:inline-block; margin:0 5px;">
 </div>
@@ -95,8 +95,13 @@ $$
 
 **这就是代码中 用到的kernel ！**
 
-![Dense deformation field](/images/local_deform_7.png "Dense deformation field")
-![Close-up view](/images/local_deform_8.png "Close-up view")
+<!-- ![Dense deformation field](/images/local_deform_7.png "Dense deformation field")
+![Close-up view](/images/local_deform_8.png "Close-up view") -->
+
+<div align="center">
+  <img src="/images/local_deform_7.png" width="45%" alt="Dense deformation field" style="display:inline-block; margin:0 5px;">
+  <img src="/images/local_deform_8.png" width="45%" alt="Close-up view" style="display:inline-block; margin:0 5px;">
+</div>
 
 ### 4. 图像校正与模板扭曲
 
@@ -106,8 +111,13 @@ $$
 
 - **模板扭曲：** 若需将模板变换至目标图像空间，则根据模板各点位置查询对应的位移量，逐点施加偏移即可完成模板扭曲。
 
-![Corrected image](/images/local_deform_9.png "Corrected image")
-![Corrected template](/images/local_deform_10.png "Corrected template")
+<!-- ![Corrected image](/images/local_deform_9.png "Corrected image")
+![Corrected template](/images/local_deform_10.png "Corrected template") -->
+
+<div align="center">
+  <img src="/images/local_deform_9.png" width="45%" alt="Corrected image" style="display:inline-block; margin:0 5px;">
+  <img src="/images/local_deform_10.png" width="45%" alt="Corrected template" style="display:inline-block; margin:0 5px;">
+</div>
 
 ## 问题与后续探索
 
