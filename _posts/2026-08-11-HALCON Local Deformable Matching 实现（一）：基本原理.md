@@ -11,9 +11,9 @@ author: mwwz
 
 ## 核心思想
 
-Halcon 中 `find_local_deformable_model` 算子的核心机制，源于论文 *Edge-Based Template Matching with a Harmonic Deformation Model*。其基本思路可概括为四个步骤：
+该算子的基本思路可概括为四个步骤：
 
-1. **构建局部邻域：** 为每个特征点选取最近的 `k` 个邻居，组成局部点集，匹配时以该整体为单位进行相似度度量，增强鲁棒性。
+1. **构建局部邻域：** 为每个特征点选取最近的 `k` 个邻居，组成局部点集，匹配时以该整体为单位进行相似度度量。
 
 2. **估计稀疏位移：** 对每个局部点集进行匹配，计算其整体平移量 `(dx, dy)`，得到仅覆盖特征点位置的**稀疏形变场**。
 
@@ -25,9 +25,9 @@ Halcon 中 `find_local_deformable_model` 算子的核心机制，源于论文 *E
 
 ### 1. 特征点提取与邻域构建
 
-- **特征点提取：** 采用 Sobel 算子提取边缘点，并通过亚像素插值将定位精度提升至亚像素级。
+- **特征点提取：** 采用 Sobel 算子提取边缘点，并通过亚像素插值进行精确定位。
 
-- **邻域构建：** 基于 KD-Tree 对每个特征点搜索最近的 `k` 个邻居点（实现上使用 OpenCV flann 或 nanoflann 库），从而将孤立点扩展为局部点集，为后续以"块"为单位的匹配做准备。
+- **邻域构建：** 基于 KD-Tree 为每个特征点搜索最近的 `k` 个邻居（使用 OpenCV flann 或 nanoflann），将孤立点扩展为局部点集。
 
 <div align="center">
   <img src="/images/local_deform_0.png" width="90%" alt="特征点提取结果" style="display:inline-block; margin:0 5px;">
