@@ -27,23 +27,37 @@ author: mwwz
 
 - **邻域构建：** 基于`KD-Tree` 对每个特征点搜索最近的 `k`个邻居点（实现上使用 OpenCV flann 或 nanoflann 库），从而将孤立点扩展为局部点集，为后续以“块”为单位的匹配做准备。
 
-![Feature Point Extraction](/images/local_deform_0.png "Feature Point Extraction")
-<!-- ![Neighborhood Construction](/images/local_deform_1.png "Neighborhood Construction")
+<!-- ![Feature Point Extraction](/images/local_deform_0.png "Feature Point Extraction")
+![Neighborhood Construction](/images/local_deform_1.png "Neighborhood Construction")
 ![Neighborhood Construction](/images/local_deform_2.png "Neighborhood Construction") -->
 
 <div align="center">
-  <img src="/images/local_deform_1.png" width="50%" alt="Neighborhood Construction" style="display:inline-block; margin:0 5px;">
-  <img src="/images/local_deform_2.png" width="50%" alt="Neighborhood Construction" style="display:inline-block; margin:0 5px;">
+  <img src="/images/local_deform_0.png" width="90%" alt="Neighborhood Construction" style="display:inline-block; margin:0 5px;">
+</div>
+
+<div align="center">
+  <img src="/images/local_deform_1.png" width="45%" alt="Neighborhood Construction" style="display:inline-block; margin:0 5px;">
+  <img src="/images/local_deform_2.png" width="45%" alt="Neighborhood Construction" style="display:inline-block; margin:0 5px;">
 </div>
 
 ### 2. 局部块匹配与稀疏位移估计
 
 将每个局部点集作为独立块，与全局形状匹配类似进行独立匹配。对每个块的相似度响应图寻找峰值区域，提取亚像素位移(dx,dy)，汇总后得到稀疏形变场，为后续稠密插值提供约束。
 
-![Score map](/images/local_deform_3.png "Score map")
+<!-- ![Score map](/images/local_deform_3.png "Score map")
 ![Score map](/images/local_deform_4.png "Score map")
 ![Sparse field](/images/local_deform_5.png "Sparse field")
-![Zoom-in](/images/local_deform_6.png "Zoom-in")
+![Zoom-in](/images/local_deform_6.png "Zoom-in") -->
+
+div align="center">
+  <img src="/images/local_deform_3.png" width="45%" alt="Score map" style="display:inline-block; margin:0 5px;">
+  <img src="/images/local_deform_4.png" width="45%" alt="Score map" style="display:inline-block; margin:0 5px;">
+</div>
+
+div align="center">
+  <img src="/images/local_deform_5.png" width="45%" alt="Sparse field" style="display:inline-block; margin:0 5px;">
+  <img src="/images/local_deform_6.png" width="45%" alt="Zoom-in" style="display:inline-block; margin:0 5px;">
+</div>
 
 ### 3. 调和插值生成稠密形变场
 
