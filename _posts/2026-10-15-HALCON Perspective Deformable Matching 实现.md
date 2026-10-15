@@ -26,6 +26,6 @@ HALCON 的不同匹配算子通常都有对应的模板创建算子，例如不�
 
 这样不仅减少了模板管理的复杂度，也让不同匹配算法之间的切换更加方便。
 
-![matching arch.png](/images/matching arch.png "matching arch.png")
+![matching_arch.png](/images/matching_arch.png "matching_arch.png")
 ![a.png](/images/a.png "a.png")
 ![c.png](/images/c.png "c.png")
