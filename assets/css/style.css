@@ -114,7 +114,7 @@ footer hr {
 /* 版权 + 所有链接在同一行 */
 .footer-line {
     margin: 0;
-    font-size: 14px;
+    font-size: 16px;
 }
 
 /* ========== 手机端适配 ========== */
@@ -133,6 +133,6 @@ footer hr {
     }
 
     .footer-line {
-        font-size: 12px;         /* 窄屏缩小字号，减少换行 */
+        font-size: 14px;         /* 窄屏缩小字号，减少换行 */
     }
 }
