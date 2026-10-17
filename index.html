@@ -217,38 +217,27 @@ layout: null
     </main>
 
     <footer>
-        <hr>
-        <p class="footer-line">
-            © 2026 MWWZ |
-            <a href="https://github.com/mwwzbinf">GitHub</a> |
-            <a href="mailto:mwwz@qq.com">联系我</a> |
-            <a href="javascript:void(0)" onclick="showWechatQR()" class="wechat-link">
-                <i class="icon-wechat">📱</i> 微信公众号
-            </a> |
-            <a href="#comments" onclick="scrollToComments()">💬 留言板</a>
-        </p>
+		<hr>
+		<p class="footer-line">
+			© 2026 MWWZ |
+			<a href="https://github.com/mwwzbinf">GitHub</a> |
+			<a href="mailto:mwwz@qq.com">联系我</a> |
+			<a href="javascript:void(0)" onclick="showWechatQR()" class="wechat-link">
+				<i class="icon-wechat">📱</i> 微信公众号
+			</a> |
+			<a href="https://msg.mwwztech.xyz" target="_blank" rel="noopener">💬 留言板</a>
+		</p>
 
-        <!-- 二维码弹窗（保持在 <p> 外面，HTML 结构合法） -->
-        <div id="wechatModal" class="wechat-modal">
-            <div class="modal-content">
-                <span class="close-btn" onclick="hideWechatQR()">&times;</span>
-                <h3>扫码关注公众号</h3>
-                <img src="images/woa.jpg" alt="微信公众号二维码" class="qrcode-img">
-                <p>打开微信扫一扫</p>
-            </div>
-        </div>
-
-        <!-- utterances 评论容器（保持在 <p> 外面） -->
-        <div id="comments" class="comments-section" style="margin-top: 50px; padding: 20px; background: #f9f9f9; display: none;">
-            <script src="https://utteranc.es/client.js"
-                    repo="mwwzbinf/mwwzbinf.github.io"
-                    issue-term="pathname"
-                    theme="github-light"
-                    crossorigin="anonymous"
-                    async>
-            </script>
-        </div>
-    </footer>
+		<!-- 二维码弹窗（保持在 <p> 外面，HTML 结构合法） -->
+		<div id="wechatModal" class="wechat-modal">
+			<div class="modal-content">
+				<span class="close-btn" onclick="hideWechatQR()">&times;</span>
+				<h3>扫码关注公众号</h3>
+				<img src="images/woa.jpg" alt="微信公众号二维码" class="qrcode-img">
+				<p>打开微信扫一扫</p>
+			</div>
+		</div>
+	</footer>
 
     <style>
       /* 微信链接样式 */
@@ -305,26 +294,7 @@ layout: null
   </style>
   
   <script>
-	  
-    function scrollToComments() {
-		const commentsSection = document.getElementById("comments");
-		
-		// 判断当前状态并切换
-		if (commentsSection.style.display === "block" || 
-			(commentsSection.style.display === "" && window.getComputedStyle(commentsSection).display !== "none")) {
-			// 如果当前是显示状态 -> 隐藏
-			commentsSection.style.display = "none";
-		} else {
-			// 如果当前是隐藏状态 -> 显示并滚动
-			commentsSection.style.display = "block";
-			setTimeout(() => {
-				commentsSection.scrollIntoView({ behavior: "smooth" });
-			}, 10); // 小延迟确保display生效
-		}
-		
-		return false; // 阻止默认行为
-	}
-	
+	  	
       // 微信弹窗 JavaScript
       function showWechatQR() {
           document.getElementById('wechatModal').style.display = 'flex';
