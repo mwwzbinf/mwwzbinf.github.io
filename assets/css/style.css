@@ -111,9 +111,9 @@ footer hr {
     margin: 20px 0 15px;
 }
 
-.footer-copy,
-.footer-links {
-    margin: 0 0 6px;
+/* 版权 + 所有链接在同一行 */
+.footer-line {
+    margin: 0;
     font-size: 14px;
 }
 
@@ -130,5 +130,9 @@ footer hr {
 
     footer {
         padding: 0 10px;         /* 防止页脚内容在窄屏贴边 */
+    }
+
+    .footer-line {
+        font-size: 12px;         /* 窄屏缩小字号，减少换行 */
     }
 }
