@@ -2,420 +2,579 @@
 layout: null
 ---
 
-
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4785846084875616"
-		 crossorigin="anonymous"></script>
-	 
-	<!-- Google tag (gtag.js) -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=G-128Z75MF73"></script>
-	<script>
-	  window.dataLayer = window.dataLayer || [];
-	  function gtag(){dataLayer.push(arguments);}
-	  gtag('js', new Date());
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MWWZ 技术博客 | 机器视觉与算法笔记</title>
+<meta name="description" content="MWWZ 技术博客：机器视觉、形状匹配、2D 测量与算法工程笔记。 / MWWZ Tech Blog: machine vision, shape matching, 2D metrology and engineering notes.">
+<meta name="author" content="MWWZTech">
+<meta name="robots" content="index,follow">
+<meta name="theme-color" content="#0b5cad">
+<link rel="canonical" href="https://www.mwwztech.xyz/">
 
-	  gtag('config', 'G-128Z75MF73');
-	</script>
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="MWWZ Tech Blog">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:url" content="https://www.mwwztech.xyz/">
+<meta property="og:title" content="MWWZ 技术博客 | 机器视觉与算法笔记">
+<meta property="og:description" content="机器视觉、形状匹配、2D 测量与算法工程笔记。">
+<meta property="og:image" content="https://www.mwwztech.xyz/images/a.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="MWWZ Tech Blog">
+<meta name="twitter:description" content="Machine vision, shape matching, 2D metrology and engineering notes.">
+<meta name="twitter:image" content="https://www.mwwztech.xyz/images/a.png">
 
-	<script>
-	var _hmt = _hmt || [];
-	(function() {
-	  var hm = document.createElement("script");
-	  hm.src = "https://hm.baidu.com/hm.js?99c0004131892f138d6a346a55cb0769";
-	  var s = document.getElementsByTagName("script")[0]; 
-	  s.parentNode.insertBefore(hm, s);
-	})();
-	</script>	
-	
-	<script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
-	<script>LA.init({id:"3P7NsizO0c6zGQyg",ck:"3P7NsizO0c6zGQyg"})</script>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230b5cad'/%3E%3Ctext x='32' y='43' font-family='Arial,Helvetica,sans-serif' font-size='34' font-weight='700' fill='white' text-anchor='middle'%3EM%3C/text%3E%3C/svg%3E">
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MWWZ</title>
-
-    <!-- 引入全站样式表（如果 style.css 不在站点根目录，请把 /style.css 改成实际路径，如 /assets/css/style.css） -->
-	<link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
-
-    <style>
-        body {
-            font-family: 'Helvetica', Arial, sans-serif;
-            line-height: 1.6;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            color: #333;
-        }
-
-        header {
-            border-bottom: 2px solid #f0f0f0;
-            padding-bottom: 10px;
-        }
-
-        a {
-            color: #0366d6;
-            text-decoration: none;
-        }
-    </style>
-</head>
-<body>
-    <!-- header -->
-    <main>
-		<section>
-			<h2>匠心之作</h2>
-			<p style="margin-bottom: 8px;">基于形状的模板匹配
-				<span class="download-links">
-					<a href="https://www.mwwztech.com/" target="_blank" class="direct-link">[直接下载]</a>
-					<a href="https://pan.baidu.com/s/1FP6wA8KOwCYJhKI1cc93xg?pwd=aabb" target="_blank" class="baidu-link">[百度网盘]</a>
-				</span>
-			</p>
-			
-			<div class="carousel-container" style="max-width: 100%;">
-				<div class="carousel-slide">
-					<img class="slide" src="images/a.png" style="width: 100%; display: block; border-radius: 4px;">
-					<img class="slide" src="images/b.png" style="width: 100%; display: none; border-radius: 4px;">
-					<img class="slide" src="images/e.png" style="width: 100%; display: none; border-radius: 4px;">
-					<img class="slide" src="images/f.png" style="width: 100%; display: none; border-radius: 4px;">
-					<img class="slide" src="images/g.png" style="width: 100%; display: none; border-radius: 4px;">
-					<img class="slide" src="images/j.png" style="width: 100%; display: none; border-radius: 4px;">
-					<img class="slide" src="images/R.png" style="width: 100%; display: none; border-radius: 4px;">
-					<img class="slide" src="images/c.png" style="width: 100%; display: none; border-radius: 4px;">
-				</div>
-				
-				<div class="dots-container" style="text-align: center; padding: 15px 0;">
-					<span class="dot" onclick="currentSlide(0)"></span>
-					<span class="dot" onclick="currentSlide(1)"></span>
-					<span class="dot" onclick="currentSlide(2)"></span>
-					<span class="dot" onclick="currentSlide(3)"></span>
-					<span class="dot" onclick="currentSlide(4)"></span>
-					<span class="dot" onclick="currentSlide(5)"></span>
-					<span class="dot" onclick="currentSlide(6)"></span>
-					<span class="dot" onclick="currentSlide(7)"></span>
-				</div>
-			</div>
-		</section>
-
-		<style>
-			/* 1. 调整所有标题的默认间距，防止"笔耕不辍"离上方太远 */
-			section h2 {
-				margin-top: 8px;    /* 缩小标题上方的距离 */
-				margin-bottom: 4px;  /* 缩小标题与其下方内容的距离 */
-			}
-
-			/* 2. 轮播图外层容器 */
-			.carousel-container {
-				max-width: 100%;
-				margin-bottom: 0px;   /* 容器底部的外边距 */
-			}
-
-			/* 3. 圆点容器：控制图片与圆点的距离 */
-			.dots-container {
-				text-align: center;
-				padding: 2px 0;       /* 核心：控制图片与圆点的上下间距 */
-				line-height: 1;       /* 消除默认行高 */
-			}
-
-			/* 4. 圆点本身的大小与间距 */
-			.dot {
-				height: 8px;          /* 圆点高度 */
-				width: 8px;           /* 圆点宽度 */
-				margin: 0 3px;        /* 圆点之间的左右间距 */
-				background-color: #ddd;
-				border-radius: 50%;
-				display: inline-block;
-				cursor: pointer;
-				transition: background-color 0.3s ease;
-			}
-
-			.dot.active {
-				background-color: #717171; /* 激活时的颜色 */
-			}
-
-			.dot:hover {
-				background-color: #bbb;    /* 鼠标悬停时的颜色 */
-			}
-		</style>
-
-		<script>
-			let slideIndex = 0;
-			const slides = document.querySelectorAll('.slide');
-			const dots = document.querySelectorAll('.dot');
-
-			function showSlides(n) {
-				if (n >= slides.length) slideIndex = 0;
-				if (n < 0) slideIndex = slides.length - 1;
-
-				// 隐藏所有图片，移除所有圆点的 active 类
-				slides.forEach(img => img.style.display = "none");
-				dots.forEach(dot => dot.classList.remove("active"));
-
-				// 显示当前图，激活对应圆点
-				slides[slideIndex].style.display = "block";
-				dots[slideIndex].classList.add("active");
-			}
-
-			function currentSlide(n) {
-				slideIndex = n;
-				showSlides(slideIndex);
-			}
-
-			// 自动轮播
-			let autoTimer = setInterval(() => {
-				slideIndex++;
-				showSlides(slideIndex);
-			}, 3000);
-
-			// 鼠标点击圆点后重新计时（可选，增强体验）
-			function resetTimer() {
-				clearInterval(autoTimer);
-				autoTimer = setInterval(() => {
-					slideIndex++;
-					showSlides(slideIndex);
-				}, 3000);
-			}
-
-			// 初始化
-			showSlides(slideIndex);
-		</script>
-
-        <section>
-          <h2>笔耕不辍</h2>
-		  <ul>
-		  {% for post in site.posts limit: 2 %}
-			<li>
-			  <a href="{{ post.url }}">{{ post.title }}</a>
-			  <span>{{ post.date | date: "%Y-%m-%d" }}</span>
-			</li>
-		  {% endfor %}
-		  
-		  {% if site.posts.size > 2 %}
-			<li>
-				<a href="/all-posts.html" style="font-weight: bold;">更多文章......</a>
-			</li>
-		  {% endif %}
-		</ul>
-		<style>
-		.view-all-link {
-		  text-align: right;
-		  margin-top: 1rem;
-		}
-
-		.view-all-link a {
-		  text-decoration: underline;
-		  color: #16B89B;
-		  transition: color 0.3s ease;
-		}
-
-		.view-all-link a:hover {
-		  color: #3498db;
-		}
-		</style>
-
-        </section>
-    </main>
-
-    <footer>
-		<hr>
-		<p class="footer-line">
-			© 2026 MWWZ |
-			<!-- <a href="https://github.com/mwwzbinf">GitHub</a> | -->
-			<a href="mailto:mwwz@qq.com">联系我</a> |
-			<a href="javascript:void(0)" onclick="showWechatQR()" class="wechat-link">
-				<i class="icon-wechat">📱</i> 微信公众号
-			</a> |
-			<a href="https://msg.mwwztech.xyz" target="_blank" rel="noopener">💬 留言板</a>
-		</p>
-
-		<!-- 二维码弹窗（保持在 <p> 外面，HTML 结构合法） -->
-		<div id="wechatModal" class="wechat-modal">
-			<div class="modal-content">
-				<span class="close-btn" onclick="hideWechatQR()">&times;</span>
-				<h3>扫码关注公众号</h3>
-				<img src="images/woa.jpg" alt="微信公众号二维码" class="qrcode-img">
-				<p>打开微信扫一扫</p>
-			</div>
-		</div>
-	</footer>
-
-    <style>
-      /* 微信链接样式 */
-      .wechat-link {
-          color: #07C160;
-          text-decoration: none;
-          font-size: inherit;
-          padding: 0;
-          background: none;
-          border: none;
-          transition: color 0.3s;
-          display: inline;
-      }
-      .wechat-link:hover {
-          color: #05a84e;
-          text-decoration: underline;
-      }
-      
-      /* 弹窗样式 */
-      .wechat-modal {
-          display: none;
-          position: fixed;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          background: rgba(0,0,0,0.7);
-          z-index: 1000;
-          justify-content: center;
-          align-items: center;
-      }
-      .modal-content {
-          background: white;
-          padding: 30px;
-          border-radius: 10px;
-          text-align: center;
-          position: relative;
-          max-width: 80%;
-      }
-      .qrcode-img {
-          width: 200px;
-          height: 200px;
-          margin: 15px 0;
-          border: 1px solid #eee;
-      }
-      .close-btn {
-          position: absolute;
-          top: 10px;
-          right: 15px;
-          font-size: 24px;
-          cursor: pointer;
-          color: #999;
-      }
-  </style>
-  
-  <script>
-	  	
-      // 微信弹窗 JavaScript
-      function showWechatQR() {
-          document.getElementById('wechatModal').style.display = 'flex';
-          document.body.style.overflow = 'hidden';
-      }
-      function hideWechatQR() {
-          document.getElementById('wechatModal').style.display = 'none';
-          document.body.style.overflow = 'auto';
-      }
-      document.addEventListener('click', function(event) {
-          if (event.target === document.getElementById('wechatModal')) {
-              hideWechatQR();
-          }
-      });
-      document.addEventListener('keydown', function(event) {
-          if (event.key === 'Escape') {
-              hideWechatQR();
-          }
-      });
-  </script>
-
-
-
-<!-- 浮动视频窗口 -->
-<style>
-#floatingVideoContainer{
-    position: fixed;
-    right: 20px;
-    bottom: 20px;
-    width: 500px;
-    background: #000;
-    border-radius: 12px;
-    overflow: hidden;
-    z-index: 9999;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.35);
-    transition: all 0.3s ease;
-}
-
-#floatingVideoContainer.maximized{
-    width: min(90vw, 1200px);
-    right: 5vw;
-    bottom: 5vh;
-}
-
-#floatingVideoHeader{
-    height: 40px;
-    background: rgba(20,20,20,0.95);
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 12px;
-    font-size: 14px;
-    box-sizing: border-box;
-}
-
-#floatingVideoControls button{
-    margin-left: 8px;
-    border: none;
-    background: #444;
-    color: white;
-    border-radius: 4px;
-    width: 28px;
-    height: 28px;
-    cursor: pointer;
-}
-
-#floatingVideoControls button:hover{
-    background: #666;
-}
-
-#floatingVideo{
-    width: 100%;
-    aspect-ratio: 1402 / 1000;
-    height: auto;
-    object-fit: contain;
-    display: block;
-    background: #000;
-}
-
-@media (max-width: 768px){
-    #floatingVideoContainer{
-        width: 72vw;
-        right: 4vw;
-        bottom: 10px;
-    }
-
-    #floatingVideoContainer.maximized{
-        width: 96vw;
-        right: 2vw;
-        bottom: 10px;
-    }
-}
-</style>
-
-<div id="floatingVideoContainer">
-    <div id="floatingVideoHeader">
-        <span>视频演示</span>
-        <div id="floatingVideoControls">
-            <button onclick="toggleFloatingVideo()">□</button>
-            <button onclick="closeFloatingVideo()">×</button>
-        </div>
-    </div>
-
-    <video id="floatingVideo" controls autoplay muted loop playsinline webkit-playsinline>
-        <source src="assets/shape_match.mp4" type="video/mp4">
-        您的浏览器不支持视频播放
-    </video>
-</div>
-
-<script>
-function toggleFloatingVideo(){
-    document.getElementById('floatingVideoContainer')
-        .classList.toggle('maximized');
-}
-
-function closeFloatingVideo(){
-    document.getElementById('floatingVideoContainer').style.display='none';
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "name": "MWWZ Tech Blog",
+  "url": "https://www.mwwztech.xyz/",
+  "description": "Machine vision, shape matching, 2D metrology and engineering notes from MWWZTech.",
+  "publisher": {
+    "@type": "Organization",
+    "name": "MWWZTech",
+    "url": "https://www.mwwztech.com/"
+  }
 }
 </script>
 
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-128Z75MF73"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-128Z75MF73');
+</script>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?99c0004131892f138d6a346a55cb0769";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script charset="UTF-8" id="LA_COLLECT" src="https://sdk.51.la/js-sdk-pro.min.js"></script>
+<script>if (window.LA) { LA.init({id:"3P7NsizO0c6zGQyg",ck:"3P7NsizO0c6zGQyg"}); }</script>
 
+<style>
+:root{
+  --bg:#f6f8fb;
+  --surface:#ffffff;
+  --text:#0f172a;
+  --muted:#475569;
+  --brand:#0b5cad;
+  --brand-dark:#084a8c;
+  --brand-soft:#e8f1fb;
+  --accent:#0f766e;
+  --border:#e2e8f0;
+  --radius:16px;
+  --shadow:0 10px 30px rgba(15,23,42,.08);
+  --max:1120px;
+  --mono:"Cascadia Code","SFMono-Regular",Consolas,"Liberation Mono",monospace;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:"Microsoft YaHei","PingFang SC","Noto Sans SC","Segoe UI",Roboto,Arial,sans-serif;color:var(--text);background:var(--bg);line-height:1.65;-webkit-font-smoothing:antialiased}
+img{max-width:100%;height:auto;display:block}
+a{color:var(--brand);text-decoration:none}
+a:hover{text-decoration:underline}
+h1,h2,h3,h4{line-height:1.25;margin:0 0 .5em;letter-spacing:-.01em}
+p{margin:0 0 1em}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
+section[id]{scroll-margin-top:84px}
+.skip{position:absolute;left:-9999px;top:0;background:var(--brand);color:#fff;padding:10px 16px;border-radius:0 0 8px 0;z-index:100}
+.skip:focus{left:0}
+
+/* Header */
+.site-header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
+.header-inner{display:flex;align-items:center;gap:18px;min-height:64px}
+.brand{font-weight:800;font-size:1.15rem;letter-spacing:.06em;color:var(--text);white-space:nowrap}
+.brand span{color:var(--brand)}
+.brand em{font-style:normal;font-weight:500;font-size:.78rem;letter-spacing:.04em;color:var(--muted);margin-left:8px}
+.brand:hover{text-decoration:none}
+.nav{display:flex;gap:18px;flex-wrap:wrap;margin-left:auto}
+.nav a{color:var(--muted);font-size:.95rem}
+.nav a:hover{color:var(--brand);text-decoration:none}
+.lang-switch{font-size:.82rem;font-weight:600;color:var(--muted);background:transparent;border:1px solid var(--border);border-radius:999px;padding:5px 10px;line-height:1;cursor:pointer;font-family:inherit}
+.lang-switch:hover{color:var(--brand);border-color:#b9cfe6}
+
+/* Shared hero / section */
+.hero{padding:64px 0 48px}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center}
+.eyebrow{margin:0 0 12px;color:var(--brand);font-weight:700;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase}
+.hero h1{font-size:clamp(1.9rem,3.8vw,2.9rem);margin-bottom:18px}
+.lead{font-size:1.05rem;color:var(--muted);max-width:60ch}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--brand);color:#fff;border:1px solid var(--brand);border-radius:10px;padding:11px 18px;font-size:.95rem;font-weight:600;cursor:pointer;transition:background .2s,border-color .2s,transform .2s}
+.btn:hover{background:var(--brand-dark);border-color:var(--brand-dark);text-decoration:none;transform:translateY(-1px)}
+.btn-ghost{background:transparent;color:var(--brand);border-color:#b9cfe6}
+.btn-ghost:hover{background:var(--brand-soft);color:var(--brand-dark)}
+
+/* Terminal */
+.terminal{background:#0f172a;border:1px solid #1e293b;border-radius:16px;box-shadow:0 20px 40px rgba(15,23,42,.25);overflow:hidden}
+.terminal-bar{display:flex;align-items:center;gap:6px;padding:10px 14px;background:#111c31;border-bottom:1px solid #1e293b}
+.terminal-bar span{width:10px;height:10px;border-radius:50%;background:#334155}
+.terminal-bar span:nth-child(1){background:#ef4444}
+.terminal-bar span:nth-child(2){background:#f59e0b}
+.terminal-bar span:nth-child(3){background:#22c55e}
+.terminal-bar em{margin-left:8px;font-style:normal;font-family:var(--mono);font-size:.72rem;color:#94a3b8}
+.terminal pre{margin:0;padding:20px;overflow:auto;font-family:var(--mono);font-size:.84rem;line-height:1.8;color:#cbd5e1}
+.terminal code{font-family:inherit}
+.prompt{color:#7dd3fc}
+.cursor{display:inline-block;margin-left:2px;color:#7dd3fc;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+
+/* Sections */
+.section{padding:56px 0}
+.section-head{max-width:760px;margin-bottom:28px}
+.section-head h2{font-size:clamp(1.5rem,3vw,2rem)}
+
+/* Project */
+.project-card{display:grid;grid-template-columns:1.1fr .9fr;gap:32px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow)}
+.carousel-container{min-width:0}
+.carousel-slide{position:relative;aspect-ratio:16/10;background:#eef2f7;border-radius:12px;overflow:hidden;border:1px solid var(--border)}
+.slide{display:none;position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#eef2f7}
+.slide:first-child{display:block}
+.dots-container{display:flex;justify-content:center;gap:8px;padding:12px 0 0}
+.dot{width:8px;height:8px;padding:0;border:0;border-radius:50%;background:#cbd5e1;cursor:pointer;transition:background .2s}
+.dot.active{background:var(--brand)}
+.dot:hover{background:#94a3b8}
+.project-copy{display:flex;flex-direction:column;justify-content:center;min-width:0}
+.feature-list{list-style:none;padding:0;margin:0 0 22px;display:grid;gap:9px;color:var(--muted);font-size:.92rem}
+.feature-list li::before{content:"✓";color:var(--accent);font-weight:700;margin-right:8px}
+.project-actions{display:flex;gap:10px;flex-wrap:wrap}
+
+/* Posts + sidebar */
+.content-grid{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);gap:32px;align-items:start}
+.posts-main{min-width:0}
+.post-list{list-style:none;margin:0;padding:0;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)}
+.post-item{border-bottom:1px solid var(--border)}
+.post-item:last-child{border-bottom:0}
+.post-link{display:grid;grid-template-columns:108px minmax(0,1fr) auto;gap:16px;align-items:center;padding:16px 20px;color:var(--text);transition:background .2s}
+.post-link:hover{background:#f8fafc;text-decoration:none}
+.post-date{font-family:var(--mono);font-size:.78rem;color:#64748b;white-space:nowrap}
+.post-name{font-weight:600;font-size:.98rem;min-width:0;overflow-wrap:anywhere}
+.post-arrow{color:var(--brand);font-weight:700}
+.post-empty{padding:20px;color:var(--muted)}
+.more-link{text-align:right;margin-top:16px}
+.more-link a{font-weight:600;font-size:.9rem}
+.sidebar{display:grid;gap:16px}
+.side-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px;box-shadow:0 4px 16px rgba(15,23,42,.04)}
+.side-card h3{font-size:.95rem;margin-bottom:10px}
+.side-card p{color:var(--muted);font-size:.9rem;margin:0}
+.topics{display:flex;flex-wrap:wrap;gap:8px}
+.topics span{background:var(--brand-soft);color:var(--brand-dark);border-radius:999px;padding:4px 10px;font-size:.74rem;font-weight:600}
+.side-links{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.side-links a{font-size:.9rem;color:var(--muted)}
+.side-links a:hover{color:var(--brand)}
+
+/* Footer */
+.site-footer{background:#0f172a;color:#cbd5e1;padding:40px 0 20px;margin-top:56px}
+.footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:32px}
+.footer-grid h4{color:#fff;font-size:.9rem;margin-bottom:10px}
+.footer-grid a,.footer-grid .link-btn{display:block;color:#cbd5e1;font-size:.9rem;margin-bottom:6px;background:none;border:0;padding:0;text-align:left;cursor:pointer;font-family:inherit}
+.footer-grid a:hover,.footer-grid .link-btn:hover{color:#fff;text-decoration:none}
+.brand-light{color:#fff}
+.brand-light span{color:#7dd3fc}
+.footer-bottom{border-top:1px solid #1e293b;margin-top:24px;padding-top:16px;font-size:.78rem;color:#94a3b8}
+.footer-bottom p{margin:0}
+
+/* Dialog */
+dialog{border:0;border-radius:16px;padding:24px;max-width:min(92vw,360px);box-shadow:0 24px 60px rgba(0,0,0,.3);text-align:center}
+dialog::backdrop{background:rgba(15,23,42,.6)}
+.dialog-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}
+.dialog-head h3{margin:0;font-size:1.05rem}
+.dialog-close{border:0;background:#f1f5f9;color:#334155;width:32px;height:32px;border-radius:50%;font-size:1.2rem;line-height:1;cursor:pointer}
+dialog img{margin:0 auto 10px;border:1px solid var(--border);border-radius:8px}
+dialog p{margin:0;color:var(--muted);font-size:.9rem}
+
+:focus-visible{outline:3px solid #93c5fd;outline-offset:2px}
+
+@media (max-width:900px){
+  .hero-grid,.project-card,.content-grid{grid-template-columns:1fr}
+  .hero{padding-top:40px}
+  .footer-grid{grid-template-columns:1fr 1fr}
+  .nav{order:3;width:100%;margin-left:0;gap:14px;padding-bottom:10px}
+  .header-inner{flex-wrap:wrap;padding-top:10px;padding-bottom:10px}
+  .lang-switch{margin-left:auto}
+  section[id]{scroll-margin-top:128px}
+}
+@media (max-width:640px){
+  .hero h1{font-size:1.8rem}
+  .hero-actions .btn{flex:1 1 auto}
+  .post-link{grid-template-columns:1fr auto;gap:4px 12px}
+  .post-date{grid-column:1/-1}
+  .post-arrow{display:none}
+  .footer-grid{grid-template-columns:1fr}
+  .terminal pre{font-size:.76rem;padding:16px}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{transition:none!important;animation:none!important}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">跳到主要内容 / Skip to main content</a>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="#top">MWWZ<span>TECH</span><em data-i18n="brandSub">技术博客</em></a>
+    <nav class="nav" aria-label="主导航" data-i18n-aria="navAria">
+      <a href="#top"><span data-i18n="navHome">首页</span></a>
+      <a href="#posts"><span data-i18n="navPosts">文章</span></a>
+      <a href="#project"><span data-i18n="navProject">项目</span></a>
+      <a href="#about"><span data-i18n="navAbout">关于</span></a>
+      <a href="#contact"><span data-i18n="navContact">联系</span></a>
+    </nav>
+    <button class="lang-switch" id="langSwitch" type="button" aria-label="Switch to English">EN</button>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero" id="top">
+    <div class="wrap hero-grid">
+      <div>
+        <p class="eyebrow" data-i18n="heroEyebrow">机器视觉 · 算法 · 工程实践</p>
+        <h1 data-i18n="heroTitle">记录机器视觉与算法工程中的思考</h1>
+        <p class="lead" data-i18n="heroLead">形状匹配、2D 测量、区域形态学，以及 C / C++ / C# / Python 的工程实践。</p>
+        <div class="hero-actions">
+          <a class="btn" href="#posts" data-i18n="heroRead">阅读文章</a>
+          <a class="btn btn-ghost" href="https://www.mwwztech.com/" target="_blank" rel="noopener" data-i18n="heroSite">访问主站</a>
+        </div>
+      </div>
+      <div class="terminal" aria-hidden="true">
+        <div class="terminal-bar"><span></span><span></span><span></span><em>bash — mwwz</em></div>
+        <pre><code><span class="prompt">$</span> whoami
+machine vision engineer
+<span class="prompt">$</span> cat focus.txt
+shape matching
+2D metrology
+region morphology
+<span class="prompt">$</span> ls stack/
+C  C++  C#  Python<span class="cursor">▌</span></code></pre>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="project">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow" data-i18n="projectEyebrow">项目</p>
+        <h2 data-i18n="projectTitle">基于形状的模板匹配</h2>
+        <p class="lead" data-i18n="projectLead">自研的 HALCON 替代方案，覆盖形状模板匹配、2D 测量与区域形态学。演示程序可直接下载。</p>
+      </div>
+      <div class="project-card">
+        <div class="carousel-container">
+          <div class="carousel-slide" role="region" aria-label="Project screenshots">
+            <img class="slide" src="images/a.png" alt="Shape matching demo 1" loading="eager" decoding="async">
+            <img class="slide" src="images/b.png" alt="Shape matching demo 2" loading="eager" decoding="async">
+            <img class="slide" src="images/e.png" alt="Shape matching demo 3" loading="eager" decoding="async">
+            <img class="slide" src="images/f.png" alt="Shape matching demo 4" loading="eager" decoding="async">
+            <img class="slide" src="images/g.png" alt="Shape matching demo 5" loading="eager" decoding="async">
+            <img class="slide" src="images/j.png" alt="Shape matching demo 6" loading="eager" decoding="async">
+            <img class="slide" src="images/R.png" alt="Shape matching demo 7" loading="eager" decoding="async">
+            <img class="slide" src="images/c.png" alt="Shape matching demo 8" loading="eager" decoding="async">
+          </div>
+          <div class="dots-container">
+            <button class="dot active" type="button" onclick="currentSlide(0)" aria-label="Slide 1"></button>
+            <button class="dot" type="button" onclick="currentSlide(1)" aria-label="Slide 2"></button>
+            <button class="dot" type="button" onclick="currentSlide(2)" aria-label="Slide 3"></button>
+            <button class="dot" type="button" onclick="currentSlide(3)" aria-label="Slide 4"></button>
+            <button class="dot" type="button" onclick="currentSlide(4)" aria-label="Slide 5"></button>
+            <button class="dot" type="button" onclick="currentSlide(5)" aria-label="Slide 6"></button>
+            <button class="dot" type="button" onclick="currentSlide(6)" aria-label="Slide 7"></button>
+            <button class="dot" type="button" onclick="currentSlide(7)" aria-label="Slide 8"></button>
+          </div>
+        </div>
+        <div class="project-copy">
+          <ul class="feature-list">
+            <li data-i18n="featShape">基于形状的模板匹配</li>
+            <li data-i18n="featMetrology">2D 测量与区域形态学</li>
+            <li data-i18n="featLang">C / C++ / C# / Python</li>
+            <li data-i18n="featPlatform">Windows / Linux / Ubuntu / Android</li>
+          </ul>
+          <div class="project-actions">
+            <a class="btn" href="https://www.mwwztech.com/" target="_blank" rel="noopener" data-i18n="projectDownload">直接下载</a>
+            <a class="btn btn-ghost" href="https://pan.baidu.com/s/1FP6wA8KOwCYJhKI1cc93xg?pwd=aabb" target="_blank" rel="noopener" data-i18n="projectBaidu">百度网盘</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="posts">
+    <div class="wrap content-grid">
+      <div class="posts-main">
+        <div class="section-head">
+          <p class="eyebrow" data-i18n="postsEyebrow">最新</p>
+          <h2 data-i18n="postsTitle">笔耕不辍</h2>
+          <p class="lead" data-i18n="postsLead">记录算法实现、工程问题与技术思考。</p>
+        </div>
+        <ul class="post-list">
+          {% for post in site.posts limit: 6 %}
+          <li class="post-item">
+            <a class="post-link" href="{{ post.url | relative_url }}">
+              <span class="post-date">{{ post.date | date: "%Y-%m-%d" }}</span>
+              <span class="post-name">{{ post.title }}</span>
+              <span class="post-arrow" aria-hidden="true">→</span>
+            </a>
+          </li>
+          {% endfor %}
+          {% if site.posts.size == 0 %}
+          <li class="post-empty" data-i18n="noPosts">暂无文章。</li>
+          {% endif %}
+        </ul>
+        {% if site.posts.size > 6 %}
+        <p class="more-link"><a href="/all-posts.html"><span data-i18n="morePosts">更多文章……</span> →</a></p>
+        {% endif %}
+      </div>
+
+      <aside class="sidebar">
+        <section class="side-card" id="about">
+          <h3 data-i18n="aboutTitle">关于</h3>
+          <p data-i18n="aboutText">MWWZTech 专注于工业机器视觉算法研发，这里记录实现细节与工程实践。</p>
+        </section>
+        <section class="side-card">
+          <h3 data-i18n="topicsTitle">主题</h3>
+          <div class="topics">
+            <span>Machine Vision</span>
+            <span>Shape Matching</span>
+            <span>2D Metrology</span>
+            <span>C / C++ / C# / Python</span>
+          </div>
+        </section>
+        <section class="side-card" id="contact">
+          <h3 data-i18n="linksTitle">链接</h3>
+          <ul class="side-links">
+            <li><a href="https://www.mwwztech.com/" target="_blank" rel="noopener" data-i18n="linkSite">主站</a></li>
+            <li><a href="https://msg.mwwztech.xyz" target="_blank" rel="noopener" data-i18n="linkGuestbook">留言板</a></li>
+            <li><a href="/feed.xml" data-i18n="linkRss">RSS 订阅</a></li>
+            <li><a href="mailto:mwwz@qq.com" data-i18n="linkEmail">邮箱</a></li>
+          </ul>
+        </section>
+      </aside>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-grid">
+    <div>
+      <a class="brand brand-light" href="#top">MWWZ<span>TECH</span></a>
+      <p data-i18n="footerNote">工业视觉算法与工程笔记。</p>
+    </div>
+    <div>
+      <h4 data-i18n="footerLinks">链接</h4>
+      <a href="https://www.mwwztech.com/" target="_blank" rel="noopener" data-i18n="linkSite">主站</a>
+      <a href="https://msg.mwwztech.xyz" target="_blank" rel="noopener" data-i18n="linkGuestbook">留言板</a>
+      <a href="/feed.xml" data-i18n="linkRss">RSS 订阅</a>
+    </div>
+    <div>
+      <h4 data-i18n="footerContactTitle">联系</h4>
+      <a href="mailto:mwwz@qq.com" data-i18n="footerContact">联系我</a>
+      <a href="images/woa.jpg" target="_blank" rel="noopener" class="link-btn" data-open-wechat><span data-i18n="footerWechat">微信公众号</span></a>
+    </div>
+  </div>
+  <div class="wrap footer-bottom">
+    <p>© 2026 MWWZ. All rights reserved.</p>
+  </div>
+</footer>
+
+<dialog id="wechatDialog" aria-labelledby="wechatTitle">
+  <form method="dialog" class="dialog-head">
+    <h3 id="wechatTitle" data-i18n="modalTitle">微信公众号</h3>
+    <button class="dialog-close" value="close" data-i18n-aria="modalClose" aria-label="关闭">×</button>
+  </form>
+  <img src="images/woa.jpg" alt="WeChat QR code" width="220" height="220" loading="lazy">
+  <p data-i18n="modalHint">打开微信扫一扫，关注 MWWZTech</p>
+</dialog>
+
+<script>
+(function () {
+  var I18N = {
+    zh: {
+      title: 'MWWZ 技术博客 | 机器视觉与算法笔记',
+      brandSub: '技术博客',
+      navAria: '主导航',
+      navHome: '首页',
+      navPosts: '文章',
+      navProject: '项目',
+      navAbout: '关于',
+      navContact: '联系',
+      heroEyebrow: '机器视觉 · 算法 · 工程实践',
+      heroTitle: '记录机器视觉与算法工程中的思考',
+      heroLead: '形状匹配、2D 测量、区域形态学，以及 C / C++ / C# / Python 的工程实践。',
+      heroRead: '阅读文章',
+      heroSite: '访问主站',
+      projectEyebrow: '项目',
+      projectTitle: '基于形状的模板匹配',
+      projectLead: '自研的 HALCON 替代方案，覆盖形状模板匹配、2D 测量与区域形态学。演示程序可直接下载。',
+      featShape: '基于形状的模板匹配',
+      featMetrology: '2D 测量与区域形态学',
+      featLang: 'C / C++ / C# / Python',
+      featPlatform: 'Windows / Linux / Ubuntu / Android',
+      projectDownload: '直接下载',
+      projectBaidu: '百度网盘',
+      postsEyebrow: '最新',
+      postsTitle: '笔耕不辍',
+      postsLead: '记录算法实现、工程问题与技术思考。',
+      morePosts: '更多文章……',
+      noPosts: '暂无文章。',
+      aboutTitle: '关于',
+      aboutText: 'MWWZTech 专注于工业机器视觉算法研发，这里记录实现细节与工程实践。',
+      topicsTitle: '主题',
+      linksTitle: '链接',
+      linkSite: '主站',
+      linkGuestbook: '留言板',
+      linkRss: 'RSS 订阅',
+      linkEmail: '邮箱',
+      footerNote: '工业视觉算法与工程笔记。',
+      footerLinks: '链接',
+      footerContactTitle: '联系',
+      footerContact: '联系我',
+      footerWechat: '微信公众号',
+      modalTitle: '微信公众号',
+      modalHint: '打开微信扫一扫，关注 MWWZTech',
+      modalClose: '关闭'
+    },
+    en: {
+      title: 'MWWZ Tech Blog | Machine Vision and Algorithm Notes',
+      brandSub: 'Tech Blog',
+      navAria: 'Main navigation',
+      navHome: 'Home',
+      navPosts: 'Posts',
+      navProject: 'Project',
+      navAbout: 'About',
+      navContact: 'Contact',
+      heroEyebrow: 'Machine Vision · Algorithms · Engineering',
+      heroTitle: 'Notes on machine vision, algorithms and engineering',
+      heroLead: 'Shape matching, 2D metrology, region morphology, and engineering with C / C++ / C# / Python.',
+      heroRead: 'Read the Blog',
+      heroSite: 'Visit mwwztech.com',
+      projectEyebrow: 'Project',
+      projectTitle: 'Shape-based Template Matching',
+      projectLead: 'An in-house HALCON alternative covering shape-based template matching, 2D metrology and region morphology. Demos are available for direct download.',
+      featShape: 'Shape-based template matching',
+      featMetrology: '2D metrology and region morphology',
+      featLang: 'C / C++ / C# / Python',
+      featPlatform: 'Windows / Linux / Ubuntu / Android',
+      projectDownload: 'Direct Download',
+      projectBaidu: 'Baidu Netdisk',
+      postsEyebrow: 'Latest',
+      postsTitle: 'Latest Posts',
+      postsLead: 'Notes on algorithm implementation, engineering problems and technical ideas.',
+      morePosts: 'More posts...',
+      noPosts: 'No posts yet.',
+      aboutTitle: 'About',
+      aboutText: 'MWWZTech builds industrial machine vision algorithms. This blog covers implementation details and engineering practice.',
+      topicsTitle: 'Topics',
+      linksTitle: 'Links',
+      linkSite: 'Main Site',
+      linkGuestbook: 'Guestbook',
+      linkRss: 'RSS Feed',
+      linkEmail: 'Email',
+      footerNote: 'Industrial vision algorithms and engineering notes.',
+      footerLinks: 'Links',
+      footerContactTitle: 'Contact',
+      footerContact: 'Contact',
+      footerWechat: 'WeChat',
+      modalTitle: 'WeChat',
+      modalHint: 'Open WeChat and scan to follow MWWZTech',
+      modalClose: 'Close'
+    }
+  };
+
+  var currentLang = 'zh';
+
+  function applyLang(lang) {
+    currentLang = lang;
+    var dict = I18N[lang] || I18N.zh;
+    document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+    document.title = dict.title;
+
+    document.querySelectorAll('[data-i18n]').forEach(function (el) {
+      var key = el.getAttribute('data-i18n');
+      if (dict[key]) el.textContent = dict[key];
+    });
+
+    document.querySelectorAll('[data-i18n-aria]').forEach(function (el) {
+      var key = el.getAttribute('data-i18n-aria');
+      if (dict[key]) el.setAttribute('aria-label', dict[key]);
+    });
+
+    var btn = document.getElementById('langSwitch');
+    if (btn) {
+      btn.textContent = lang === 'zh' ? 'EN' : '中文';
+      btn.setAttribute('aria-label', lang === 'zh' ? 'Switch to English' : '切换到中文');
+    }
+
+    try { localStorage.setItem('mwwz-blog-lang', lang); } catch (e) {}
+  }
+
+  var langBtn = document.getElementById('langSwitch');
+  if (langBtn) {
+    langBtn.addEventListener('click', function () {
+      applyLang(currentLang === 'zh' ? 'en' : 'zh');
+    });
+  }
+
+  var saved = null;
+  try { saved = localStorage.getItem('mwwz-blog-lang'); } catch (e) {}
+  applyLang(saved === 'en' ? 'en' : 'zh');
+
+  // Carousel
+  var slideIndex = 0;
+  var slides = document.querySelectorAll('.slide');
+  var dots = document.querySelectorAll('.dot');
+  function showSlides(n) {
+    if (!slides.length) return;
+    if (n >= slides.length) slideIndex = 0;
+    if (n < 0) slideIndex = slides.length - 1;
+    slides.forEach(function (img) { img.style.display = 'none'; });
+    dots.forEach(function (dot) { dot.classList.remove('active'); });
+    slides[slideIndex].style.display = 'block';
+    if (dots[slideIndex]) dots[slideIndex].classList.add('active');
+  }
+
+  window.currentSlide = function (n) {
+    slideIndex = n;
+    showSlides(slideIndex);
+  };
+
+  showSlides(0);
+
+  ['images/b.png', 'images/e.png'].forEach(function (src) {
+    var preload = new Image();
+    preload.src = src;
+  });
+
+  // WeChat dialog
+  var dialog = document.getElementById('wechatDialog');
+  if (dialog) {
+    document.querySelectorAll('[data-open-wechat]').forEach(function (el) {
+      el.addEventListener('click', function (event) {
+        if (typeof dialog.showModal !== 'function') return;
+        event.preventDefault();
+        if (!dialog.open) dialog.showModal();
+      });
+    });
+
+    dialog.addEventListener('click', function (event) {
+      var rect = dialog.getBoundingClientRect();
+      var inside = event.clientX >= rect.left && event.clientX <= rect.right &&
+                   event.clientY >= rect.top && event.clientY <= rect.bottom;
+      if (!inside) dialog.close();
+    });
+  }
+})();
+</script>
 </body>
 </html>
+
