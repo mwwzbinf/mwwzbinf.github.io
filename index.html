@@ -220,6 +220,26 @@ dialog p{margin:0;color:var(--muted);font-size:.9rem}
   html{scroll-behavior:auto}
   *,*::before,*::after{transition:none!important;animation:none!important}
 }
+/* 在线咨询（右侧悬浮，微信 / QQ / 邮件） */
+.contact-rail{position:fixed;right:0;top:50%;transform:translateY(-50%);z-index:90;display:flex;flex-direction:column;font-family:inherit}
+.contact-rail-item{position:relative;width:48px;height:48px}
+.contact-rail-btn{display:flex;align-items:center;justify-content:center;width:48px;height:48px;padding:0;border:0;border-bottom:1px solid rgba(255,255,255,.18);background:var(--brand);color:#fff;cursor:pointer;font:inherit}
+.contact-rail-item:last-child .contact-rail-btn{border-bottom:0}
+.contact-rail-btn:hover,.contact-rail-btn:focus-visible{background:var(--brand-dark)}
+.contact-rail-btn:focus-visible{outline:2px solid #93c5fd;outline-offset:-3px}
+.contact-rail-btn svg{width:22px;height:22px}
+.contact-rail-qq{font-size:13px;font-weight:700;letter-spacing:.4px;line-height:1}
+.contact-rail-pop{display:none;position:absolute;top:0;right:48px;z-index:1;background:var(--brand);color:#fff;border-radius:8px 0 0 8px;box-shadow:0 8px 24px rgba(15,23,42,.2);text-align:left;white-space:nowrap}
+.contact-rail-item:hover .contact-rail-pop,.contact-rail-item:focus-within .contact-rail-pop,.contact-rail-item.open .contact-rail-pop{display:block}
+.contact-rail-pop-wechat{width:150px;padding:8px;text-align:center}
+.contact-rail-pop-wechat img{display:block;width:130px;height:130px;object-fit:contain;border-radius:6px;background:#fff}
+.contact-rail-pop-wechat span{display:block;margin-top:6px;font-size:12px;color:rgba(255,255,255,.9)}
+.contact-rail-pop-text{display:none;min-width:200px;padding:8px 14px}
+.contact-rail-item:hover .contact-rail-pop-text,.contact-rail-item:focus-within .contact-rail-pop-text,.contact-rail-item.open .contact-rail-pop-text{display:flex;align-items:center;justify-content:space-between;gap:14px}
+.contact-rail-pop-text strong{display:block;font-size:14px;line-height:1.3}
+.contact-rail-pop-text small{display:block;font-size:11px;color:rgba(255,255,255,.75);margin-top:2px}
+.contact-rail-pop-text a{color:#fff;font-size:12px;text-decoration:underline;white-space:nowrap}
+.contact-rail-pop-text a:hover{color:#dbeafe}
 </style>
 </head>
 <body>
@@ -389,6 +409,37 @@ C  C++  C#  Python<span class="cursor">▌</span></code></pre>
   </div>
 </footer>
 
+<!-- 在线咨询（微信 / QQ / 邮件） -->
+<div class="contact-rail" id="contactRail" aria-label="在线咨询" data-i18n-aria="railAria">
+  <div class="contact-rail-item">
+    <button class="contact-rail-btn" type="button" aria-label="微信二维码" aria-expanded="false" data-i18n-aria="railWechatAria">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M9.5 4.5c-3.6 0-6.5 2.4-6.5 5.4 0 1.7 1 3.2 2.5 4.2l-.6 2.2 2.4-1.2c.7.2 1.4.3 2.2.3 3.6 0 6.5-2.4 6.5-5.4S13.1 4.5 9.5 4.5z"/><path d="M15.2 9.1c2.9 0 5.3 2 5.3 4.5 0 1.4-.8 2.7-2 3.5l.5 1.8-2-1c-.6.2-1.2.2-1.8.2-2.9 0-5.3-2-5.3-4.5s2.4-4.5 5.3-4.5z"/></svg>
+    </button>
+    <div class="contact-rail-pop contact-rail-pop-wechat">
+      <img src="images/wechat.png" alt="MWWZTech WeChat QR code" width="130" height="130" loading="eager" decoding="async">
+      <span data-i18n="railWechat">扫码加微信</span>
+    </div>
+  </div>
+  <div class="contact-rail-item">
+    <button class="contact-rail-btn" type="button" aria-label="QQ 咨询：66557370" aria-expanded="false" data-i18n-aria="railQqAria">
+      <span class="contact-rail-qq">QQ</span>
+    </button>
+    <div class="contact-rail-pop contact-rail-pop-text">
+      <div><strong>QQ：66557370</strong><small data-i18n="railQqNote">未加好友请先添加</small></div>
+      <a href="https://wpa.qq.com/msgrd?v=3&amp;uin=66557370&amp;site=qq&amp;menu=yes" target="_blank" rel="noopener" data-i18n="railQqOpen">打开 QQ</a>
+    </div>
+  </div>
+  <div class="contact-rail-item">
+    <button class="contact-rail-btn" type="button" aria-label="邮件咨询：mwwz@qq.com" aria-expanded="false" data-i18n-aria="railEmailAria">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3.5" y="5.5" width="17" height="13" rx="2"/><path d="m4 6 8 6 8-6"/></svg>
+    </button>
+    <div class="contact-rail-pop contact-rail-pop-text">
+      <div><strong>mwwz@qq.com</strong><small data-i18n="railEmailNote">点击发送邮件</small></div>
+      <a href="mailto:mwwz@qq.com" data-i18n="railEmailSend">发送</a>
+    </div>
+  </div>
+</div>
+
 <dialog id="wechatDialog" aria-labelledby="wechatTitle">
   <form method="dialog" class="dialog-head">
     <h3 id="wechatTitle" data-i18n="modalTitle">微信公众号</h3>
@@ -442,6 +493,15 @@ C  C++  C#  Python<span class="cursor">▌</span></code></pre>
       footerContactTitle: '联系',
       footerContact: '联系我',
       footerWechat: '微信公众号',
+      railAria: '在线咨询',
+      railWechatAria: '微信二维码',
+      railQqAria: 'QQ 咨询：66557370',
+      railEmailAria: '邮件咨询：mwwz@qq.com',
+      railWechat: '扫码加微信',
+      railQqNote: '未加好友请先添加',
+      railQqOpen: '打开 QQ',
+      railEmailNote: '点击发送邮件',
+      railEmailSend: '发送',
       modalTitle: '微信公众号',
       modalHint: '打开微信扫一扫，关注 MWWZTech',
       modalClose: '关闭'
@@ -487,6 +547,15 @@ C  C++  C#  Python<span class="cursor">▌</span></code></pre>
       footerContactTitle: 'Contact',
       footerContact: 'Contact',
       footerWechat: 'WeChat',
+      railAria: 'Online contact',
+      railWechatAria: 'WeChat QR code',
+      railQqAria: 'QQ chat: 66557370',
+      railEmailAria: 'Email: mwwz@qq.com',
+      railWechat: 'Scan to add us',
+      railQqNote: 'Add first if not friends',
+      railQqOpen: 'Open QQ',
+      railEmailNote: 'Click to email',
+      railEmailSend: 'Send',
       modalTitle: 'WeChat',
       modalHint: 'Open WeChat and scan to follow MWWZTech',
       modalClose: 'Close'
@@ -556,6 +625,37 @@ C  C++  C#  Python<span class="cursor">▌</span></code></pre>
     var preload = new Image();
     preload.src = src;
   });
+
+  // Contact rail
+  var contactRail = document.getElementById('contactRail');
+  if (contactRail) {
+    var railItems = Array.prototype.slice.call(contactRail.querySelectorAll('.contact-rail-item'));
+    function closeRail(except) {
+      railItems.forEach(function (item) {
+        if (item === except) return;
+        item.classList.remove('open');
+        var btn = item.querySelector('.contact-rail-btn');
+        if (btn) btn.setAttribute('aria-expanded', 'false');
+      });
+    }
+    railItems.forEach(function (item) {
+      var btn = item.querySelector('.contact-rail-btn');
+      if (!btn) return;
+      btn.addEventListener('click', function (event) {
+        event.stopPropagation();
+        var willOpen = !item.classList.contains('open');
+        closeRail(item);
+        item.classList.toggle('open', willOpen);
+        btn.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
+      });
+    });
+    document.addEventListener('click', function (event) {
+      if (!contactRail.contains(event.target)) closeRail(null);
+    });
+    document.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape') closeRail(null);
+    });
+  }
 
   // WeChat dialog
   var dialog = document.getElementById('wechatDialog');
